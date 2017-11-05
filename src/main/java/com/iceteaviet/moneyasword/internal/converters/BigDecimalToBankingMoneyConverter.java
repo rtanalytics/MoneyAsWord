@@ -1,21 +1,20 @@
 package com.iceteaviet.moneyasword.internal.converters;
 
-import com.iceteaviet.moneyasword.internal.BigDecimalToStringConverter;
-import com.iceteaviet.moneyasword.internal.IntegerToStringConverter;
+import com.iceteaviet.moneyasword.internal.NumberToStringConverter;
 
 import java.math.BigDecimal;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-public class BigDecimalToBankingMoneyConverter implements BigDecimalToStringConverter {
+public class BigDecimalToBankingMoneyConverter implements NumberToStringConverter<BigDecimal> {
 
     private static final String FORMAT = "%s %s %02d/100";
     private static final int MAXIMAL_DECIMAL_PLACES_COUNT = 2;
 
-    private final IntegerToStringConverter converter;
+    private final NumberToStringConverter<Integer> converter;
     private final String currencySymbol;
 
-    public BigDecimalToBankingMoneyConverter(IntegerToStringConverter converter, String currencySymbol) {
+    public BigDecimalToBankingMoneyConverter(NumberToStringConverter<Integer> converter, String currencySymbol) {
         this.converter = converter;
         this.currencySymbol = currencySymbol;
     }

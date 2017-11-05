@@ -1,18 +1,18 @@
 package com.iceteaviet.moneyasword.internal.languages.german;
 
 import com.iceteaviet.moneyasword.internal.GenderAwareIntegerToStringConverter;
-import com.iceteaviet.moneyasword.internal.IntegerToStringConverter;
 import com.iceteaviet.moneyasword.internal.NumberProcessor;
+import com.iceteaviet.moneyasword.internal.NumberToStringConverter;
 
 import java.util.Map;
 
-public class GermanIntegerToWordsConverter implements IntegerToStringConverter {
+public class GermanIntegerToWordsConverter implements NumberToStringConverter<Integer> {
 
-    private final IntegerToStringConverter bigNumbersConverter;
+    private final NumberToStringConverter<Integer> bigNumbersConverter;
     private final Map<Integer, String> exceptions;
     private final GenderAwareIntegerToStringConverter smallNumbersConverter;
 
-    public GermanIntegerToWordsConverter(IntegerToStringConverter bigNumbersConverter,
+    public GermanIntegerToWordsConverter(NumberToStringConverter<Integer> bigNumbersConverter,
                                          Map<Integer, String> exceptions,
                                          GenderAwareIntegerToStringConverter smallNumbersConverter) {
         this.bigNumbersConverter = bigNumbersConverter;

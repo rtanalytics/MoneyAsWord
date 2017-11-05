@@ -17,6 +17,8 @@ import com.iceteaviet.moneyasword.internal.languages.portuguese.PortugueseIntege
 import com.iceteaviet.moneyasword.internal.languages.portuguese.PortugueseThousandToWordsConverter;
 import com.iceteaviet.moneyasword.internal.languages.russian.RussianValues;
 
+import java.math.BigDecimal;
+
 public final class Container {
 
     public static Container polishContainer() {
@@ -32,11 +34,11 @@ public final class Container {
         Container containerForBigNumbers = new Container(czechValues);
         Container containerForSmallNumbers = new Container(new CzechValuesForSmallNumbers());
 
-        IntegerToStringConverter integerConverter = new CzechIntegerToWordsConverter(
+        NumberToStringConverter<Integer> integerConverter = new CzechIntegerToWordsConverter(
                 containerForBigNumbers.getNumbersConverter(), containerForSmallNumbers.getNumbersConverter(),
                 czechValues.exceptions()
         );
-        BigDecimalToStringConverter bigDecimalBankingMoneyValueConverter = new BigDecimalToBankingMoneyConverter(
+        NumberToStringConverter<BigDecimal> bigDecimalBankingMoneyValueConverter = new BigDecimalToBankingMoneyConverter(
                 integerConverter,
                 czechValues.currency());
 
@@ -54,11 +56,11 @@ public final class Container {
         GermanThousandToWordsConverter germanThousandToWordsConverter = new GermanThousandToWordsConverter(
                 values.baseNumbers());
 
-        IntegerToStringConverter converter = new GermanIntegerToWordsConverter(
+        NumberToStringConverter<Integer> converter = new GermanIntegerToWordsConverter(
                 new IntegerToWordsConverter(germanThousandToWordsConverter, values.pluralForms()), values.exceptions(),
                 germanThousandToWordsConverter);
 
-        BigDecimalToStringConverter bigDecimalBankingMoneyValueConverter = new BigDecimalToBankingMoneyConverter(
+        NumberToStringConverter<BigDecimal> bigDecimalBankingMoneyValueConverter = new BigDecimalToBankingMoneyConverter(
                 converter, values.currency());
 
         return new Container(converter, bigDecimalBankingMoneyValueConverter);
@@ -70,18 +72,18 @@ public final class Container {
         PortugueseThousandToWordsConverter portugueseThousandToWordsConverter = new PortugueseThousandToWordsConverter(
                 values.baseNumbers(), values.exceptions());
 
-        IntegerToStringConverter converter = new PortugueseIntegerToWordsConverter(
+        NumberToStringConverter<Integer> converter = new PortugueseIntegerToWordsConverter(
                 new PortugueseIntegerToWordsConverterAdapter(portugueseThousandToWordsConverter, values.pluralForms()), values.exceptions(),
                 portugueseThousandToWordsConverter);
 
-        BigDecimalToStringConverter bigDecimalBankingMoneyValueConverter = new BigDecimalToBankingMoneyConverter(
+        NumberToStringConverter<BigDecimal> bigDecimalBankingMoneyValueConverter = new BigDecimalToBankingMoneyConverter(
                 converter, values.currency());
 
         return new Container(converter, bigDecimalBankingMoneyValueConverter);
     }
 
-    private final IntegerToStringConverter integerConverter;
-    private final BigDecimalToStringConverter bigDecimalConverter;
+    private final NumberToStringConverter<Integer> integerConverter;
+    private final NumberToStringConverter<BigDecimal> bigDecimalConverter;
 
     private Container(BaseValues baseValues) {
         HundredsToWordsConverter hundredsToStringConverter = new HundredsToWordsConverter(baseValues.baseNumbers(),
@@ -95,17 +97,17 @@ public final class Container {
                 baseValues.currency());
     }
 
-    private Container(IntegerToStringConverter integerConverter,
-                      BigDecimalToStringConverter bigDecimalConverter) {
+    private Container(NumberToStringConverter<Integer> integerConverter,
+                      NumberToStringConverter<BigDecimal> bigDecimalConverter) {
         this.integerConverter = integerConverter;
         this.bigDecimalConverter = bigDecimalConverter;
     }
 
-    public IntegerToStringConverter getNumbersConverter() {
+    public NumberToStringConverter<Integer> getNumbersConverter() {
         return integerConverter;
     }
 
-    public BigDecimalToStringConverter getBankingMoneyConverter() {
+    public NumberToStringConverter<BigDecimal> getBankingMoneyConverter() {
         return bigDecimalConverter;
     }
 }

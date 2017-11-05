@@ -1,20 +1,20 @@
 package com.iceteaviet.moneyasword.internal.languages.portuguese;
 
-import com.iceteaviet.moneyasword.internal.IntegerToStringConverter;
 import com.iceteaviet.moneyasword.internal.MultiFormNumber;
 import com.iceteaviet.moneyasword.internal.NumberProcessor;
+import com.iceteaviet.moneyasword.internal.NumberToStringConverter;
 
 import java.util.Map;
 
-public class PortugueseIntegerToWordsConverter implements IntegerToStringConverter {
+public class PortugueseIntegerToWordsConverter implements NumberToStringConverter<Integer> {
 
-    private final IntegerToStringConverter bigNumbersConverter;
+    private final NumberToStringConverter<Integer> bigNumbersConverter;
     private final Map<Integer, MultiFormNumber> exceptions;
-    private final IntegerToStringConverter smallNumbersConverter;
+    private final NumberToStringConverter<Integer> smallNumbersConverter;
 
-    public PortugueseIntegerToWordsConverter(IntegerToStringConverter bigNumbersConverter,
+    public PortugueseIntegerToWordsConverter(NumberToStringConverter<Integer> bigNumbersConverter,
                                          Map<Integer, MultiFormNumber> exceptions,
-                                         IntegerToStringConverter smallNumbersConverter) {
+                                             NumberToStringConverter<Integer> smallNumbersConverter) {
         this.bigNumbersConverter = bigNumbersConverter;
         this.exceptions = exceptions;
         this.smallNumbersConverter = smallNumbersConverter;

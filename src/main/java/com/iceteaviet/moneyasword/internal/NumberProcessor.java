@@ -8,16 +8,16 @@ import java.util.List;
 
 public class NumberProcessor {
 
-    private final IntegerToStringConverter bigNumbersConverter;
+    private final NumberToStringConverter<Integer> bigNumbersConverter;
     private final GenderAwareIntegerToStringConverter smallNumbersConverter;
 
-    public NumberProcessor(IntegerToStringConverter bigNumbersConverter,
-            IntegerToStringConverter smallNumbersConverter) {
+    public NumberProcessor(NumberToStringConverter<Integer> bigNumbersConverter,
+                           NumberToStringConverter<Integer> smallNumbersConverter) {
         this.bigNumbersConverter = bigNumbersConverter;
         this.smallNumbersConverter = ToStringConverter.toGenderAwareInteger(smallNumbersConverter);
     }
 
-    public NumberProcessor(IntegerToStringConverter bigNumbersConverter,
+    public NumberProcessor(NumberToStringConverter<Integer> bigNumbersConverter,
             GenderAwareIntegerToStringConverter smallNumbersConverter) {
         this.bigNumbersConverter = bigNumbersConverter;
         this.smallNumbersConverter = smallNumbersConverter;

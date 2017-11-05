@@ -1,6 +1,6 @@
 package com.iceteaviet.moneyasword.internal.languages.portuguese;
 
-import com.iceteaviet.moneyasword.internal.IntegerToStringConverter;
+import com.iceteaviet.moneyasword.internal.NumberToStringConverter;
 import com.iceteaviet.moneyasword.internal.converters.IntegerToWordsConverter;
 import com.iceteaviet.moneyasword.internal.languages.GenderType;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PortugueseIntegerToWordsConverterAdapter extends IntegerToWordsConverter {
 
-    public PortugueseIntegerToWordsConverterAdapter(IntegerToStringConverter hundredsToWordsConverter,
+    public PortugueseIntegerToWordsConverterAdapter(NumberToStringConverter<Integer> hundredsToWordsConverter,
              List<PluralForms> pluralForms) {
          super(hundredsToWordsConverter, pluralForms);
     }

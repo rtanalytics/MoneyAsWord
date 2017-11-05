@@ -1,8 +1,8 @@
 package com.iceteaviet.moneyasword.internal.languages.portuguese;
 
 import com.google.common.collect.Range;
-import com.iceteaviet.moneyasword.internal.IntegerToStringConverter;
 import com.iceteaviet.moneyasword.internal.MultiFormNumber;
+import com.iceteaviet.moneyasword.internal.NumberToStringConverter;
 import com.iceteaviet.moneyasword.internal.languages.GenderForms;
 import com.iceteaviet.moneyasword.internal.languages.GenderType;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
-public class PortugueseThousandToWordsConverter implements IntegerToStringConverter {
+public class PortugueseThousandToWordsConverter implements NumberToStringConverter<Integer> {
 
     private static final boolean HAS_NEXT_VALUE = true;
     private static final boolean HAS_NOT_NEXT_VALUE = false;

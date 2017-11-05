@@ -1,18 +1,18 @@
 package com.iceteaviet.moneyasword.internal.languages.czech;
 
-import com.iceteaviet.moneyasword.internal.IntegerToStringConverter;
 import com.iceteaviet.moneyasword.internal.NumberProcessor;
+import com.iceteaviet.moneyasword.internal.NumberToStringConverter;
 
 import java.util.Map;
 
-public class CzechIntegerToWordsConverter implements IntegerToStringConverter {
+public class CzechIntegerToWordsConverter implements NumberToStringConverter<Integer> {
 
-    private final IntegerToStringConverter bigNumbersConverter;
-    private final IntegerToStringConverter smallNumbersConverter;
+    private final NumberToStringConverter<Integer> bigNumbersConverter;
+    private final NumberToStringConverter<Integer> smallNumbersConverter;
     private final Map<Integer, String> exceptions;
 
-    public CzechIntegerToWordsConverter(IntegerToStringConverter bigNumbersConverter,
-                                        IntegerToStringConverter smallNumbersConverter,
+    public CzechIntegerToWordsConverter(NumberToStringConverter<Integer> bigNumbersConverter,
+                                        NumberToStringConverter<Integer> smallNumbersConverter,
                                         Map<Integer, String> exceptions) {
         this.bigNumbersConverter = bigNumbersConverter;
         this.smallNumbersConverter = smallNumbersConverter;

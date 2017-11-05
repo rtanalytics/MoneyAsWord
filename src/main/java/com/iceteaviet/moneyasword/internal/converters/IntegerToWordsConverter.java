@@ -2,7 +2,7 @@ package com.iceteaviet.moneyasword.internal.converters;
 
 import com.google.common.base.Joiner;
 import com.iceteaviet.moneyasword.internal.GenderAwareIntegerToStringConverter;
-import com.iceteaviet.moneyasword.internal.IntegerToStringConverter;
+import com.iceteaviet.moneyasword.internal.NumberToStringConverter;
 import com.iceteaviet.moneyasword.internal.ToStringConverter;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
 import com.iceteaviet.moneyasword.internal.support.NumberChunking;
@@ -14,7 +14,7 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.collect.Lists.reverse;
 
-public class IntegerToWordsConverter implements IntegerToStringConverter {
+public class IntegerToWordsConverter implements NumberToStringConverter<Integer> {
 
     private final NumberChunking numberChunking = new NumberChunking();
 
@@ -27,7 +27,7 @@ public class IntegerToWordsConverter implements IntegerToStringConverter {
         this.pluralForms = pluralForms;
     }
 
-    public IntegerToWordsConverter(final IntegerToStringConverter hundredsToWordsConverter,
+    public IntegerToWordsConverter(final NumberToStringConverter<Integer> hundredsToWordsConverter,
             List<PluralForms> pluralForms) {
         this.hundredsToWordsConverter = ToStringConverter.toGenderAwareInteger(hundredsToWordsConverter);
         this.pluralForms = pluralForms;
