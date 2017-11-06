@@ -5,11 +5,12 @@ package com.iceteaviet.moneyasword;
  */
 public interface ConverterManager<Type> {
     int ENGLISH = 0;
-    int CZECH = 1;
-    int GERMAN = 2;
-    int POLISH = 3;
-    int BRAZILIAN_PORTUGUESE = 4;
-    int RUSSIAN = 5;
+    int VIETNAMESE = 1;
+    int CZECH = 2;
+    int GERMAN = 3;
+    int POLISH = 4;
+    int BRAZILIAN_PORTUGUESE = 5;
+    int RUSSIAN = 6;
 
 
     String asWords(Type value);

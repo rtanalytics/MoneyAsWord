@@ -13,9 +13,7 @@ public class RegularPluralForms implements PluralForms {
     }
 
     public RegularPluralForms(String singularForm, String pluralForm) {
-        this.singularForm = singularForm;
-        this.pluralForm = pluralForm;
-        this.genderType = GenderType.NON_APPLICABLE;
+        this(singularForm, pluralForm, GenderType.GENDERLESS);
     }
 
     @Override

@@ -18,10 +18,10 @@ public class PortugueseThousandToWordsConverter implements NumberToStringConvert
 
     private final Map<Integer, GenderForms> baseValues;
     private final Map<Integer, MultiFormNumber> exceptions;
-    private final GenderType genderType = GenderType.NON_APPLICABLE;
+    private final GenderType genderType = GenderType.GENDERLESS;
 
     public PortugueseThousandToWordsConverter(Map<Integer, GenderForms> baseValues,
-            Map<Integer, MultiFormNumber> exceptions) {
+                                              Map<Integer, MultiFormNumber> exceptions) {
         this.baseValues = baseValues;
         this.exceptions = exceptions;
     }
@@ -76,7 +76,7 @@ public class PortugueseThousandToWordsConverter implements NumberToStringConvert
 
     private String getThousandsAsWords(Integer thousands, Integer other) {
         if (nothingComesAfter(other)) {
-             return format("%s mil", asWords(thousands));
+            return format("%s mil", asWords(thousands));
         }
         if (other == HUNDRED) {
             return format("%s mil e %s", asWords(thousands, HAS_NOT_NEXT_VALUE), asWords(other, HAS_NOT_NEXT_VALUE));

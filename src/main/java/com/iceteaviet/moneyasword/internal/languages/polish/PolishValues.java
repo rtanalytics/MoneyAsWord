@@ -59,7 +59,7 @@ public class PolishValues implements BaseValues {
     @Override
     public List<PluralForms> pluralForms() {
         return Arrays.asList(
-                new SlavonicPluralForms("", "", ""),
+                new SlavonicPluralForms(),
                 new SlavonicPluralForms("tysiąc", "tysiące", "tysięcy"),
                 new SlavonicPluralForms("milion", "miliony", "milionów"),
                 new SlavonicPluralForms("miliard", "miliardy", "miliardów"));

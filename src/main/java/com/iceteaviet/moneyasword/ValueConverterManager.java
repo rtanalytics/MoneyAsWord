@@ -15,8 +15,11 @@ public class ValueConverterManager implements ConverterManager<Integer> {
     public static ValueConverterManager getConverterManager(int languageType) {
         switch (languageType) {
             case ENGLISH:
-
                 return new ValueConverterManager(Container.englishContainer().getNumbersConverter());
+
+            case VIETNAMESE:
+                return new ValueConverterManager(Container.vietnameseContainer().getNumbersConverter());
+
             case CZECH:
                 return new ValueConverterManager(Container.czechContainer().getNumbersConverter());
 

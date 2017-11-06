@@ -8,7 +8,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 public class BigDecimalToBankingMoneyConverter implements NumberToStringConverter<BigDecimal> {
 
-    private static final String FORMAT = "%s %s %02d/100";
+    private static final String FORMAT_FULL = "%s %s %02d/100";
+    private static final String FORMAT_NO_SUBUNIT = "%s %s";
     private static final int MAXIMAL_DECIMAL_PLACES_COUNT = 2;
 
     private final NumberToStringConverter<Integer> converter;
@@ -26,7 +27,10 @@ public class BigDecimalToBankingMoneyConverter implements NumberToStringConverte
         Integer units = value.intValue();
         Integer subunits = value.remainder(BigDecimal.ONE).multiply(new BigDecimal(100)).intValue();
 
-        return String.format(FORMAT, converter.asWords(units), currencySymbol, subunits);
+        if (subunits == 0) {
+            return String.format(FORMAT_NO_SUBUNIT, converter.asWords(units), currencySymbol);
+        }
+        return String.format(FORMAT_FULL, converter.asWords(units), currencySymbol, subunits);
     }
 
     private void validate(BigDecimal value) {

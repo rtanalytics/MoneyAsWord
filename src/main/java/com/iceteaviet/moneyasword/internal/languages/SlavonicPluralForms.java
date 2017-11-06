@@ -2,6 +2,8 @@ package com.iceteaviet.moneyasword.internal.languages;
 
 import com.google.common.collect.Range;
 
+
+//Plural forms of slavic people for West Europe countries
 public class SlavonicPluralForms implements PluralForms {
 
     private final String singularForm;
@@ -10,8 +12,12 @@ public class SlavonicPluralForms implements PluralForms {
 
     private final GenderType genderType;
 
+    public SlavonicPluralForms() {
+        this("", "", "");
+    }
+
     public SlavonicPluralForms(String singularForm, String pluralForm, String genitivePluralForm) {
-        this(singularForm, pluralForm, genitivePluralForm, GenderType.NON_APPLICABLE);
+        this(singularForm, pluralForm, genitivePluralForm, GenderType.GENDERLESS);
     }
 
     public SlavonicPluralForms(String singularForm, String pluralForm, String genitivePluralForm, GenderType genderType) {

@@ -18,7 +18,7 @@ public class NumberProcessor {
     }
 
     public NumberProcessor(NumberToStringConverter<Integer> bigNumbersConverter,
-            GenderAwareIntegerToStringConverter smallNumbersConverter) {
+                           GenderAwareIntegerToStringConverter smallNumbersConverter) {
         this.bigNumbersConverter = bigNumbersConverter;
         this.smallNumbersConverter = smallNumbersConverter;
     }
@@ -31,7 +31,7 @@ public class NumberProcessor {
         }
 
         if (smallNumber > 0) {
-            result.add(smallNumbersConverter.asWords(smallNumber, GenderType.NON_APPLICABLE));
+            result.add(smallNumbersConverter.asWords(smallNumber, GenderType.GENDERLESS));
         }
 
         return merge(result);
@@ -39,7 +39,7 @@ public class NumberProcessor {
 
     private String merge(List<String> result) {
         if (result.isEmpty()) {
-            return smallNumbersConverter.asWords(0, GenderType.NON_APPLICABLE);
+            return smallNumbersConverter.asWords(0, GenderType.GENDERLESS);
         }
 
         return Joiner.on(" ").join(result);

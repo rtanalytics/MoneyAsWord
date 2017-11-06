@@ -19,6 +19,9 @@ public class MoneyConverterManager implements ConverterManager<BigDecimal> {
             case ENGLISH:
                 return new MoneyConverterManager(Container.englishContainer().getBankingMoneyConverter());
 
+            case VIETNAMESE:
+                return new MoneyConverterManager(Container.vietnameseContainer().getBankingMoneyConverter());
+
             case CZECH:
                 return new MoneyConverterManager(Container.czechContainer().getBankingMoneyConverter());
 

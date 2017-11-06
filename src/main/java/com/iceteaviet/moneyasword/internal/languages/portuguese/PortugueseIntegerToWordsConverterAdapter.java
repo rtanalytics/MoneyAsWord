@@ -12,8 +12,8 @@ import java.util.List;
 public class PortugueseIntegerToWordsConverterAdapter extends IntegerToWordsConverter {
 
     public PortugueseIntegerToWordsConverterAdapter(NumberToStringConverter<Integer> hundredsToWordsConverter,
-             List<PluralForms> pluralForms) {
-         super(hundredsToWordsConverter, pluralForms);
+                                                    List<PluralForms> pluralForms) {
+        super(hundredsToWordsConverter, pluralForms);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class PortugueseIntegerToWordsConverterAdapter extends IntegerToWordsConv
             PluralForms currentForms = formsToUse.next();
 
             if (currentChunkValue > 0) {
-                result.add(hundredsToWordsConverter.asWords(currentChunkValue, GenderType.NON_APPLICABLE));
+                result.add(hundredsToWordsConverter.asWords(currentChunkValue, GenderType.GENDERLESS));
                 result.add(currentForms.formFor(currentChunkValue));
             }
         }

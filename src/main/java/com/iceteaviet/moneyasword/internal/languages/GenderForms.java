@@ -10,18 +10,6 @@ public class GenderForms {
 
     private final Map<GenderType, String> forms;
 
-    public static GenderForms genderForms(String masculineForm, String feminineForm, String neuterForm) {
-        return new GenderForms(masculineForm, feminineForm, neuterForm);
-    }
-
-    public static GenderForms genderForms(String masculineForm, String feminineForm, String neuterForm, String nonApplicableForm) {
-        return new GenderForms(masculineForm, feminineForm, neuterForm, nonApplicableForm);
-    }
-
-    public static GenderForms genderForm(String nonApplicableForm) {
-        return new GenderForms(nonApplicableForm);
-    }
-
     public GenderForms(String masculineForm, String feminineForm, String neuterForm) {
         this.forms = ImmutableMap.<GenderType, String>builder()
                 .put(GenderType.MASCULINE, masculineForm)
@@ -35,7 +23,7 @@ public class GenderForms {
                 .put(GenderType.MASCULINE, masculineForm)
                 .put(GenderType.FEMININE, feminineForm)
                 .put(GenderType.NEUTER, neuterForm)
-                .put(GenderType.NON_APPLICABLE, nonApplicableForm)
+                .put(GenderType.GENDERLESS, nonApplicableForm)
                 .build();
     }
 
@@ -44,8 +32,20 @@ public class GenderForms {
                 .put(GenderType.MASCULINE, nonApplicableForm)
                 .put(GenderType.FEMININE, nonApplicableForm)
                 .put(GenderType.NEUTER, nonApplicableForm)
-                .put(GenderType.NON_APPLICABLE, nonApplicableForm)
+                .put(GenderType.GENDERLESS, nonApplicableForm)
                 .build();
+    }
+
+    public static GenderForms genderForms(String masculineForm, String feminineForm, String neuterForm) {
+        return new GenderForms(masculineForm, feminineForm, neuterForm);
+    }
+
+    public static GenderForms genderForms(String masculineForm, String feminineForm, String neuterForm, String nonApplicableForm) {
+        return new GenderForms(masculineForm, feminineForm, neuterForm, nonApplicableForm);
+    }
+
+    public static GenderForms genderForm(String nonApplicableForm) {
+        return new GenderForms(nonApplicableForm);
     }
 
     public String formFor(GenderType gender) {

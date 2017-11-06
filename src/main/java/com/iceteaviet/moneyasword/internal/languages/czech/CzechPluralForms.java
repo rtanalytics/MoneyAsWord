@@ -21,7 +21,7 @@ public class CzechPluralForms implements PluralForms {
     }
 
     public CzechPluralForms() {
-        this("", "", "", GenderType.NON_APPLICABLE);
+        this("", "", "", GenderType.GENDERLESS);
     }
 
     @Override
