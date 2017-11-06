@@ -12,7 +12,7 @@ public class ValueConverterManager extends ConverterManager<Integer> {
     }
 
     public static ValueConverterManager getConverterManager(int languageType) {
-        return new ValueConverterManager(getContainerFromLanguageType(languageType).getNumbersConverter());
+        return new ValueConverterManager(getContainerFromLanguageType(languageType).getIntegerConverter());
     }
 
     @Override

@@ -13,7 +13,6 @@ public class BigDecimalToBankingMoneyConverter implements NumberToStringConverte
     private static final int MAXIMAL_DECIMAL_PLACES_COUNT = 2;
     private final NumberToStringConverter<Integer> converter;
     private final String currencySymbol;
-    private boolean showCurrencySymbolFirst = false;
 
     public BigDecimalToBankingMoneyConverter(NumberToStringConverter<Integer> converter, String currencySymbol) {
         this.converter = converter;
@@ -22,6 +21,10 @@ public class BigDecimalToBankingMoneyConverter implements NumberToStringConverte
 
     @Override
     public String asWords(BigDecimal value) {
+        return asWords(value, false);
+    }
+
+    public String asWords(BigDecimal value, boolean showCurrencySymbolFirst) {
         validate(value);
 
         Integer units = value.intValue();
@@ -38,10 +41,6 @@ public class BigDecimalToBankingMoneyConverter implements NumberToStringConverte
             }
             return String.format(FORMAT_FULL, converter.asWords(units), currencySymbol, subunits);
         }
-    }
-
-    public void setShowCurrencySymbolFirst(boolean enabled) {
-        showCurrencySymbolFirst = enabled;
     }
 
     private void validate(BigDecimal value) {
