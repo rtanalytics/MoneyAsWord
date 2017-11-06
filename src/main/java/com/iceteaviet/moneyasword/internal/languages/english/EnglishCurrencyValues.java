@@ -1,6 +1,6 @@
 package com.iceteaviet.moneyasword.internal.languages.english;
 
-import com.iceteaviet.moneyasword.internal.BaseValues;
+import com.iceteaviet.moneyasword.internal.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.internal.languages.GenderForms;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static com.iceteaviet.moneyasword.internal.support.BaseNumbersBuilder.baseNumbersBuilder;
 
-public class EnglishValues implements BaseValues {
+public class EnglishCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -65,7 +65,7 @@ public class EnglishValues implements BaseValues {
     }
 
     @Override
-    public String currency() {
+    public String getCurrencySign() {
         return "£";
     }
 

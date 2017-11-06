@@ -16,9 +16,8 @@ import static com.google.common.collect.Lists.reverse;
 
 public class IntegerToWordsConverter implements NumberToStringConverter<Integer> {
 
-    private final NumberChunking numberChunking = new NumberChunking();
-
     protected final GenderAwareIntegerToStringConverter hundredsToWordsConverter;
+    private final NumberChunking numberChunking = new NumberChunking();
     private final List<PluralForms> pluralForms;
 
     public IntegerToWordsConverter(GenderAwareIntegerToStringConverter hundredsToWordsConverter,
@@ -28,7 +27,7 @@ public class IntegerToWordsConverter implements NumberToStringConverter<Integer>
     }
 
     public IntegerToWordsConverter(final NumberToStringConverter<Integer> hundredsToWordsConverter,
-            List<PluralForms> pluralForms) {
+                                   List<PluralForms> pluralForms) {
         this.hundredsToWordsConverter = ToStringConverter.toGenderAwareInteger(hundredsToWordsConverter);
         this.pluralForms = pluralForms;
     }

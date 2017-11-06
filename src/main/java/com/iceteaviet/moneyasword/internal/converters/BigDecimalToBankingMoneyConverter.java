@@ -11,9 +11,9 @@ public class BigDecimalToBankingMoneyConverter implements NumberToStringConverte
     private static final String FORMAT_FULL = "%s %s %02d/100";
     private static final String FORMAT_NO_SUBUNIT = "%s %s";
     private static final int MAXIMAL_DECIMAL_PLACES_COUNT = 2;
-
     private final NumberToStringConverter<Integer> converter;
     private final String currencySymbol;
+    private boolean showCurrencySymbolFirst = false;
 
     public BigDecimalToBankingMoneyConverter(NumberToStringConverter<Integer> converter, String currencySymbol) {
         this.converter = converter;
@@ -27,10 +27,21 @@ public class BigDecimalToBankingMoneyConverter implements NumberToStringConverte
         Integer units = value.intValue();
         Integer subunits = value.remainder(BigDecimal.ONE).multiply(new BigDecimal(100)).intValue();
 
-        if (subunits == 0) {
-            return String.format(FORMAT_NO_SUBUNIT, converter.asWords(units), currencySymbol);
+        if (showCurrencySymbolFirst) {
+            if (subunits == 0) {
+                return String.format(FORMAT_NO_SUBUNIT, currencySymbol, converter.asWords(units));
+            }
+            return String.format(FORMAT_FULL, currencySymbol, converter.asWords(units), subunits);
+        } else {
+            if (subunits == 0) {
+                return String.format(FORMAT_NO_SUBUNIT, converter.asWords(units), currencySymbol);
+            }
+            return String.format(FORMAT_FULL, converter.asWords(units), currencySymbol, subunits);
         }
-        return String.format(FORMAT_FULL, converter.asWords(units), currencySymbol, subunits);
+    }
+
+    public void setShowCurrencySymbolFirst(boolean enabled) {
+        showCurrencySymbolFirst = enabled;
     }
 
     private void validate(BigDecimal value) {

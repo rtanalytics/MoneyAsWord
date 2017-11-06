@@ -1,9 +1,9 @@
 package com.iceteaviet.moneyasword.internal.languages.polish;
 
-import com.iceteaviet.moneyasword.internal.BaseValues;
+import com.iceteaviet.moneyasword.internal.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.internal.languages.GenderForms;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
-import com.iceteaviet.moneyasword.internal.languages.SlavonicPluralForms;
+import com.iceteaviet.moneyasword.internal.languages.shared.SlavonicPluralForms;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static com.iceteaviet.moneyasword.internal.support.BaseNumbersBuilder.baseNumbersBuilder;
 
-public class PolishValues implements BaseValues {
+public class PolishCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -66,7 +66,7 @@ public class PolishValues implements BaseValues {
     }
 
     @Override
-    public String currency() {
+    public String getCurrencySign() {
         return "PLN";
     }
 

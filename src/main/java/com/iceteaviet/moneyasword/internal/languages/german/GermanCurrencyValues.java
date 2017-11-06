@@ -1,10 +1,11 @@
 package com.iceteaviet.moneyasword.internal.languages.german;
 
 import com.google.common.collect.ImmutableMap;
+import com.iceteaviet.moneyasword.internal.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.internal.languages.GenderForms;
 import com.iceteaviet.moneyasword.internal.languages.GenderType;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
-import com.iceteaviet.moneyasword.internal.languages.RegularPluralForms;
+import com.iceteaviet.moneyasword.internal.languages.shared.RegularPluralForms;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +14,9 @@ import java.util.Map;
 import static com.iceteaviet.moneyasword.internal.languages.GenderForms.genderForms;
 import static com.iceteaviet.moneyasword.internal.support.BaseNumbersBuilder.baseNumbersBuilder;
 
-public class GermanValues {
+public class GermanCurrencyValues implements CurrencyBaseValues {
 
+    @Override
     public Map<Integer, GenderForms> baseNumbers() {
         return baseNumbersBuilder()
                 .put(0, "null")
@@ -61,13 +63,20 @@ public class GermanValues {
         return ImmutableMap.<Integer, String>builder().put(1, "eins").build();
     }
 
+    @Override
     public List<PluralForms> pluralForms() {
         return Arrays.asList(
                 new RegularPluralForms("Million", "Millionen", GenderType.FEMININE),
                 new RegularPluralForms("Milliarde", "Milliarden", GenderType.FEMININE));
     }
 
-    public String currency() {
+    @Override
+    public String getCurrencySign() {
         return "€";
+    }
+
+    @Override
+    public char twoDigitsNumberSeparator() {
+        return 0;
     }
 }

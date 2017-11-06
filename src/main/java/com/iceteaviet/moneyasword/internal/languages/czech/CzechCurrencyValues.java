@@ -1,7 +1,7 @@
 package com.iceteaviet.moneyasword.internal.languages.czech;
 
 import com.google.common.collect.ImmutableMap;
-import com.iceteaviet.moneyasword.internal.BaseValues;
+import com.iceteaviet.moneyasword.internal.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.internal.languages.GenderForms;
 import com.iceteaviet.moneyasword.internal.languages.GenderType;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
@@ -13,7 +13,7 @@ import java.util.Map;
 import static com.iceteaviet.moneyasword.internal.languages.GenderForms.genderForms;
 import static com.iceteaviet.moneyasword.internal.support.BaseNumbersBuilder.baseNumbersBuilder;
 
-public class CzechValues implements BaseValues {
+public class CzechCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -67,7 +67,7 @@ public class CzechValues implements BaseValues {
     }
 
     @Override
-    public String currency() {
+    public String getCurrencySign() {
         return "Kč";
     }
 

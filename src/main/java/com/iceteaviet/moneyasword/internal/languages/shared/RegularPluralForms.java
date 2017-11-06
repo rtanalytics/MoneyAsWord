@@ -1,4 +1,7 @@
-package com.iceteaviet.moneyasword.internal.languages;
+package com.iceteaviet.moneyasword.internal.languages.shared;
+
+import com.iceteaviet.moneyasword.internal.languages.GenderType;
+import com.iceteaviet.moneyasword.internal.languages.PluralForms;
 
 public class RegularPluralForms implements PluralForms {
 

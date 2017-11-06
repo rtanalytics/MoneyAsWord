@@ -13,7 +13,7 @@ public class PortugueseIntegerToWordsConverter implements NumberToStringConverte
     private final NumberToStringConverter<Integer> smallNumbersConverter;
 
     public PortugueseIntegerToWordsConverter(NumberToStringConverter<Integer> bigNumbersConverter,
-                                         Map<Integer, MultiFormNumber> exceptions,
+                                             Map<Integer, MultiFormNumber> exceptions,
                                              NumberToStringConverter<Integer> smallNumbersConverter) {
         this.bigNumbersConverter = bigNumbersConverter;
         this.exceptions = exceptions;

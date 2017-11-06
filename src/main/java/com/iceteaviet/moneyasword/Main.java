@@ -1,6 +1,5 @@
 package com.iceteaviet.moneyasword;
 
-import java.io.Console;
 import java.math.BigDecimal;
 
 /**
@@ -11,7 +10,7 @@ public class Main {
         ValueConverterManager manager = ValueConverterManager.getConverterManager(ConverterManager.VIETNAMESE);
         System.out.println(manager.asWords(1123));
 
-        MoneyConverterManager m = MoneyConverterManager.getConverterManager(ConverterManager.VIETNAMESE);
+        MoneyConverterManager m = MoneyConverterManager.getConverterManager(ConverterManager.ENGLISH, "Vietnamese dong");
         System.out.println(m.asWords(new BigDecimal("10500")));
     }
 }

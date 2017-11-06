@@ -2,9 +2,10 @@ package com.iceteaviet.moneyasword.internal.languages.portuguese;
 
 import com.google.common.collect.ImmutableMap;
 import com.iceteaviet.moneyasword.internal.MultiFormNumber;
+import com.iceteaviet.moneyasword.internal.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.internal.languages.GenderForms;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
-import com.iceteaviet.moneyasword.internal.languages.RegularPluralForms;
+import com.iceteaviet.moneyasword.internal.languages.shared.RegularPluralForms;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,9 @@ import java.util.Map;
 
 import static com.iceteaviet.moneyasword.internal.support.BaseNumbersBuilder.baseNumbersBuilder;
 
-public class BrazilianPortugueseValues  {
+public class BrazilianPortugueseCurrencyValues implements CurrencyBaseValues {
 
+    @Override
     public Map<Integer, GenderForms> baseNumbers() {
         return baseNumbersBuilder()
                 .put(0, "zero")
@@ -61,14 +63,20 @@ public class BrazilianPortugueseValues  {
                 .build();
     }
 
+    @Override
     public List<PluralForms> pluralForms() {
         return Arrays.asList(
                 new RegularPluralForms("milhão", "milhões"),
                 new RegularPluralForms("bilhão", "bilhões"));
     }
 
-    public String currency() {
-        return "R$";
+    @Override
+    public char twoDigitsNumberSeparator() {
+        return 0;
     }
 
+    @Override
+    public String getCurrencySign() {
+        return "R$";
+    }
 }

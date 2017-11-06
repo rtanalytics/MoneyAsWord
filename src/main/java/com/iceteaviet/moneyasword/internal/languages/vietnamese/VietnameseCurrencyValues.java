@@ -1,6 +1,6 @@
 package com.iceteaviet.moneyasword.internal.languages.vietnamese;
 
-import com.iceteaviet.moneyasword.internal.BaseValues;
+import com.iceteaviet.moneyasword.internal.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.internal.languages.GenderForms;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
 
@@ -13,7 +13,7 @@ import static com.iceteaviet.moneyasword.internal.support.BaseNumbersBuilder.bas
 /**
  * Created by Genius Doan on 06/11/2017.
  */
-public class VietnameseValues implements BaseValues {
+public class VietnameseCurrencyValues implements CurrencyBaseValues {
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
         return baseNumbersBuilder()
@@ -67,8 +67,8 @@ public class VietnameseValues implements BaseValues {
     }
 
     @Override
-    public String currency() {
-        return "VNĐ";
+    public String getCurrencySign() {
+        return "₫";
     }
 
     @Override
