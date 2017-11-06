@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class MoneyConverterTest {
     @Test
     public void englishBankingMoney() {
-        MoneyConverterManager converter = MoneyConverterManager.ENGLISH_BANKING_MONEY_VALUE;
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.ENGLISH);
         String moneyAsWords = converter.asWords(new BigDecimal("1234.56"));
 
         assertEquals("one thousand two hundred thirty-four £ 56/100", moneyAsWords);
