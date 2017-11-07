@@ -14,10 +14,12 @@ import com.iceteaviet.moneyasword.internal.languages.german.GermanThousandToWord
 import com.iceteaviet.moneyasword.internal.languages.polish.PolishCurrencyValues;
 import com.iceteaviet.moneyasword.internal.languages.portuguese.BrazilianPortugueseCurrencyValues;
 import com.iceteaviet.moneyasword.internal.languages.portuguese.PortugueseIntegerToWordsConverter;
-import com.iceteaviet.moneyasword.internal.languages.portuguese.PortugueseIntegerToWordsConverterAdapter;
+import com.iceteaviet.moneyasword.internal.languages.portuguese.PortugueseIntegerToWordsJoiner;
 import com.iceteaviet.moneyasword.internal.languages.portuguese.PortugueseThousandToWordsConverter;
 import com.iceteaviet.moneyasword.internal.languages.russian.RussianCurrencyValues;
 import com.iceteaviet.moneyasword.internal.languages.vietnamese.VietnameseCurrencyValues;
+import com.iceteaviet.moneyasword.internal.languages.vietnamese.VietnameseHundredsToWordsConverter;
+import com.iceteaviet.moneyasword.internal.languages.vietnamese.VietnameseIntegerToWordsJoiner;
 
 import java.math.BigDecimal;
 
@@ -29,6 +31,7 @@ public final class Container {
         HundredsToWordsConverter hundredsToStringConverter = new HundredsToWordsConverter(currencyBaseValues.baseNumbers(),
                 currencyBaseValues.twoDigitsNumberSeparator());
 
+        //Create and assign attribute internal
         integerConverter = new IntegerToWordsConverter(
                 hundredsToStringConverter,
                 currencyBaseValues.pluralForms());
@@ -39,6 +42,7 @@ public final class Container {
 
     private Container(NumberToStringConverter<Integer> integerConverter,
                       NumberToStringConverter<BigDecimal> bigDecimalConverter) {
+        //Inject attribute from outside
         this.integerConverter = integerConverter;
         this.bigDecimalConverter = bigDecimalConverter;
     }
@@ -137,11 +141,11 @@ public final class Container {
     }
 
     public static Container vietnameseContainer() {
-        return new Container(new VietnameseCurrencyValues());
+        return getVietnameseContainer(new VietnameseCurrencyValues());
     }
 
     public static Container vietnameseContainer(String overrideCurrencySign) {
-        return new Container(new VietnameseCurrencyValues() {
+        return getVietnameseContainer(new VietnameseCurrencyValues() {
             @Override
             public String getCurrencySign() {
                 return overrideCurrencySign;
@@ -150,6 +154,17 @@ public final class Container {
     }
 
     //Helpers
+    private static Container getVietnameseContainer(VietnameseCurrencyValues values) {
+        HundredsToWordsConverter hundredsToStringConverter = new VietnameseHundredsToWordsConverter(values.baseNumbers(),
+                values.twoDigitsNumberSeparator());
+        VietnameseIntegerToWordsJoiner joiner = new VietnameseIntegerToWordsJoiner(hundredsToStringConverter, values.pluralForms());
+        BigDecimalToBankingMoneyConverter bigDecimalConverter = new BigDecimalToBankingMoneyConverter(
+                joiner,
+                values.getCurrencySign());
+
+        return new Container(joiner, bigDecimalConverter);
+    }
+
     private static Container getCzechContainer(CzechCurrencyValues czechValues, CzechValuesForSmallNumbersCurrency czechSmallValues) {
         Container containerForBigNumbers = new Container(czechValues);
         Container containerForSmallNumbers = new Container(czechSmallValues);
@@ -180,17 +195,17 @@ public final class Container {
     }
 
     private static Container getBrazilianPortugueseContainer(BrazilianPortugueseCurrencyValues values) {
-        PortugueseThousandToWordsConverter portugueseThousandToWordsConverter = new PortugueseThousandToWordsConverter(
+        PortugueseThousandToWordsConverter thousandToWordsConverter = new PortugueseThousandToWordsConverter(
                 values.baseNumbers(), values.exceptions());
 
-        PortugueseIntegerToWordsConverter converter = new PortugueseIntegerToWordsConverter(
-                new PortugueseIntegerToWordsConverterAdapter(portugueseThousandToWordsConverter, values.pluralForms()), values.exceptions(),
-                portugueseThousandToWordsConverter);
+        PortugueseIntegerToWordsConverter integerToWordsConverter = new PortugueseIntegerToWordsConverter(
+                new PortugueseIntegerToWordsJoiner(thousandToWordsConverter, values.pluralForms()), values.exceptions(),
+                thousandToWordsConverter);
 
         BigDecimalToBankingMoneyConverter bigDecimalBankingMoneyValueConverter = new BigDecimalToBankingMoneyConverter(
-                converter, values.getCurrencySign());
+                integerToWordsConverter, values.getCurrencySign());
 
-        return new Container(converter, bigDecimalBankingMoneyValueConverter);
+        return new Container(integerToWordsConverter, bigDecimalBankingMoneyValueConverter);
     }
 
     public NumberToStringConverter<Integer> getIntegerConverter() {

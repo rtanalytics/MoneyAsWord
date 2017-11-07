@@ -10,9 +10,10 @@ import java.util.Map;
 import static java.lang.String.format;
 
 public class HundredsToWordsConverter implements GenderAwareIntegerToStringConverter {
-
-    private final Map<Integer, GenderForms> baseValues;
-    private final char twoDigitsNumberSeparator;
+    protected static final String FORMAT_PATTERN_THREE_DIGITS = "%s %s";
+    protected static final String FORMAT_PATTERN_TWO_DIGITS = "%s%c%s";
+    protected final Map<Integer, GenderForms> baseValues;
+    protected final char twoDigitsNumberSeparator;
 
     public HundredsToWordsConverter(Map<Integer, GenderForms> baseValues, char twoDigitsNumberSeparator) {
         this.baseValues = baseValues;
@@ -32,15 +33,15 @@ public class HundredsToWordsConverter implements GenderAwareIntegerToStringConve
         throw new IllegalArgumentException(format("Can't convert %d", value));
     }
 
-    private String twoDigitsNumberAsString(Integer value, GenderType genderType) {
+    protected String twoDigitsNumberAsString(Integer value, GenderType genderType) {
         Integer units = value % 10;
         Integer tens = value - units;
-        return format("%s%c%s", asWords(tens, genderType), twoDigitsNumberSeparator, asWords(units, genderType));
+        return format(FORMAT_PATTERN_TWO_DIGITS, asWords(tens, genderType), twoDigitsNumberSeparator, asWords(units, genderType));
     }
 
-    private String threeDigitsNumberAsString(Integer value, GenderType genderType) {
+    protected String threeDigitsNumberAsString(Integer value, GenderType genderType) {
         Integer tensWithUnits = value % 100;
         Integer hundreds = value - tensWithUnits;
-        return format("%s %s", asWords(hundreds, genderType), asWords(tensWithUnits, genderType));
+        return format(FORMAT_PATTERN_THREE_DIGITS, asWords(hundreds, genderType), asWords(tensWithUnits, genderType));
     }
 }

@@ -41,15 +41,19 @@ public class MoneyConverterTest {
     public void vietnameseBankingMoney() {
         MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.VIETNAMESE);
 
+        assertEquals("một trăm lẻ năm triệu không trăm lẻ bốn nghìn ₫", converter.asWords(new BigDecimal("105004000")));
+        assertEquals("một tỷ không trăm năm mươi triệu không trăm bốn mươi nghìn ₫", converter.asWords(new BigDecimal("1050040000")));
         assertEquals("mười nghìn năm trăm ₫", converter.asWords(new BigDecimal("10500")));
         assertEquals("một trăm mười nghìn hai trăm ₫", converter.asWords(new BigDecimal("110200")));
-        assertEquals("một tỷ một trăm hai mươi ba triệu bốn trăm năm mươi sáu nghìn bảy trăm ₫", converter.asWords(new BigDecimal("1123456700")));
+        assertEquals("một tỷ một trăm hai mươi lăm triệu bốn trăm năm mươi mốt nghìn bảy trăm ₫", converter.asWords(new BigDecimal("1125451700")));
     }
 
     @Test
     public void vietnameseBankingMoneyShowCurrencySignFirst() {
         MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.VIETNAMESE);
 
+        assertEquals("một trăm lẻ năm triệu không trăm lẻ bốn nghìn ₫", converter.asWords(new BigDecimal("105004000"), false));
+        assertEquals("₫ một tỷ không trăm năm mươi triệu không trăm bốn mươi nghìn", converter.asWords(new BigDecimal("1050040000"), true));
         assertEquals("mười nghìn năm trăm ₫", converter.asWords(new BigDecimal("10500"), false));
         assertEquals("một trăm mười nghìn hai trăm ₫", converter.asWords(new BigDecimal("110200")));
         assertEquals("₫ một tỷ một trăm hai mươi ba triệu bốn trăm năm mươi sáu nghìn bảy trăm", converter.asWords(new BigDecimal("1123456700"), true));
@@ -59,6 +63,8 @@ public class MoneyConverterTest {
     public void vietnameseBankingMoneyOverrideCurrencySign() {
         MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.VIETNAMESE, "Đô-la Mỹ");
 
+        assertEquals("một trăm lẻ năm triệu không trăm lẻ bốn nghìn Đô-la Mỹ", converter.asWords(new BigDecimal("105004000")));
+        assertEquals("một tỷ không trăm năm mươi triệu không trăm bốn mươi nghìn Đô-la Mỹ", converter.asWords(new BigDecimal("1050040000")));
         assertEquals("mười nghìn năm trăm Đô-la Mỹ", converter.asWords(new BigDecimal("10500")));
         assertEquals("một nghìn hai trăm ba mươi bốn Đô-la Mỹ 56/100", converter.asWords(new BigDecimal("1234.56")));
         assertEquals("một tỷ một trăm hai mươi ba triệu bốn trăm năm mươi sáu nghìn bảy trăm Đô-la Mỹ", converter.asWords(new BigDecimal("1123456700")));

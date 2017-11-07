@@ -2,6 +2,7 @@ package com.iceteaviet.moneyasword.internal.converters;
 
 import com.google.common.base.Joiner;
 import com.iceteaviet.moneyasword.internal.GenderAwareIntegerToStringConverter;
+import com.iceteaviet.moneyasword.internal.Joinable;
 import com.iceteaviet.moneyasword.internal.NumberToStringConverter;
 import com.iceteaviet.moneyasword.internal.ToStringConverter;
 import com.iceteaviet.moneyasword.internal.languages.PluralForms;
@@ -14,7 +15,7 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.collect.Lists.reverse;
 
-public class IntegerToWordsConverter implements NumberToStringConverter<Integer> {
+public class IntegerToWordsConverter implements NumberToStringConverter<Integer>, Joinable<Integer> {
 
     protected final GenderAwareIntegerToStringConverter hundredsToWordsConverter;
     private final NumberChunking numberChunking = new NumberChunking();
@@ -42,7 +43,8 @@ public class IntegerToWordsConverter implements NumberToStringConverter<Integer>
         return joinValueChunksWithForms(valueChunks.iterator(), formsToUse.iterator());
     }
 
-    protected String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<PluralForms> formsToUse) {
+    @Override
+    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<PluralForms> formsToUse) {
         List<String> result = new ArrayList<>();
 
         while (chunks.hasNext() && formsToUse.hasNext()) {
@@ -58,7 +60,8 @@ public class IntegerToWordsConverter implements NumberToStringConverter<Integer>
         return joinParts(result);
     }
 
-    protected String joinParts(List<String> result) {
+    @Override
+    public String joinParts(List<String> result) {
         if (result.size() == 0) {
             return hundredsToWordsConverter.asWords(0, pluralForms.get(0).genderType());
         }

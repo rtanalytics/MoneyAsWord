@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class PortugueseIntegerToWordsConverterAdapter extends IntegerToWordsConverter {
+public class PortugueseIntegerToWordsJoiner extends IntegerToWordsConverter {
 
-    public PortugueseIntegerToWordsConverterAdapter(NumberToStringConverter<Integer> hundredsToWordsConverter,
-                                                    List<PluralForms> pluralForms) {
+    public PortugueseIntegerToWordsJoiner(NumberToStringConverter<Integer> hundredsToWordsConverter,
+                                          List<PluralForms> pluralForms) {
         super(hundredsToWordsConverter, pluralForms);
     }
 
     @Override
-    protected String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<PluralForms> formsToUse) {
+    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<PluralForms> formsToUse) {
         List<String> result = new ArrayList<>();
 
         while (chunks.hasNext() && formsToUse.hasNext()) {
@@ -32,5 +32,4 @@ public class PortugueseIntegerToWordsConverterAdapter extends IntegerToWordsConv
 
         return joinParts(result);
     }
-
 }
