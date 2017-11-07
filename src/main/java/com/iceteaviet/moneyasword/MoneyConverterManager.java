@@ -1,15 +1,15 @@
 package com.iceteaviet.moneyasword;
 
-import com.iceteaviet.moneyasword.internal.converters.BigDecimalToBankingMoneyConverter;
+import com.iceteaviet.moneyasword.core.converters.BDBankingMoneyToWordsConverter;
 
 import java.math.BigDecimal;
 
 import static com.google.common.base.Verify.verifyNotNull;
 
 public class MoneyConverterManager extends ConverterManager<BigDecimal> {
-    private final BigDecimalToBankingMoneyConverter converter;
+    private final BDBankingMoneyToWordsConverter converter;
 
-    private MoneyConverterManager(BigDecimalToBankingMoneyConverter converter) {
+    private MoneyConverterManager(BDBankingMoneyToWordsConverter converter) {
         this.converter = converter;
     }
 
@@ -24,7 +24,7 @@ public class MoneyConverterManager extends ConverterManager<BigDecimal> {
 
     @Override
     public String asWords(BigDecimal value) {
-       return asWords(value, false);
+        return asWords(value, false);
     }
 
     public String asWords(BigDecimal value, boolean showCurrencySignFirst) {

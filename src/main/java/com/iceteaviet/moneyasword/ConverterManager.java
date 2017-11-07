@@ -1,6 +1,6 @@
 package com.iceteaviet.moneyasword;
 
-import com.iceteaviet.moneyasword.internal.Container;
+import com.iceteaviet.moneyasword.core.Container;
 
 /**
  * Created by Genius Doan on 05/11/2017.
