@@ -2,7 +2,6 @@ package com.iceteaviet.moneyasword.core.languages.vietnamese;
 
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.GenderForms;
-import com.iceteaviet.moneyasword.core.languages.PluralForms;
 
 import java.util.Arrays;
 import java.util.List;
@@ -66,7 +65,7 @@ public class VietnameseCurrencyValues implements CurrencyBaseValues {
     }
 
     @Override
-    public List<PluralForms> pluralForms() {
+    public List<VietnamesePluralForms> pluralForms() {
         return Arrays.asList(
                 new VietnamesePluralForms(),
                 new VietnamesePluralForms("nghìn"),

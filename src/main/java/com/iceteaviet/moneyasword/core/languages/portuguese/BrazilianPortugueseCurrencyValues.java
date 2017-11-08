@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.GenderForms;
 import com.iceteaviet.moneyasword.core.languages.MultiFormNumber;
-import com.iceteaviet.moneyasword.core.languages.PluralForms;
 import com.iceteaviet.moneyasword.core.languages.shared.RegularPluralForms;
 
 import java.util.Arrays;
@@ -64,7 +63,7 @@ public class BrazilianPortugueseCurrencyValues implements CurrencyBaseValues {
     }
 
     @Override
-    public List<PluralForms> pluralForms() {
+    public List<RegularPluralForms> pluralForms() {
         return Arrays.asList(
                 new RegularPluralForms("milhão", "milhões"),
                 new RegularPluralForms("bilhão", "bilhões"));

@@ -2,7 +2,6 @@ package com.iceteaviet.moneyasword.core.languages.polish;
 
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.GenderForms;
-import com.iceteaviet.moneyasword.core.languages.PluralForms;
 import com.iceteaviet.moneyasword.core.languages.shared.SlavonicPluralForms;
 
 import java.util.Arrays;
@@ -57,7 +56,7 @@ public class PolishCurrencyValues implements CurrencyBaseValues {
     }
 
     @Override
-    public List<PluralForms> pluralForms() {
+    public List<SlavonicPluralForms> pluralForms() {
         return Arrays.asList(
                 new SlavonicPluralForms(),
                 new SlavonicPluralForms("tysiąc", "tysiące", "tysięcy"),

@@ -52,7 +52,7 @@ public final class Container {
         return new Container(new PolishCurrencyValues());
     }
 
-    public static Container polishContainer(String newCurrencySign) {
+    public static Container polishContainer(final String newCurrencySign) {
         return new Container(new PolishCurrencyValues() {
             @Override
             public String getCurrencySign() {
@@ -65,7 +65,7 @@ public final class Container {
         return new Container(new RussianCurrencyValues());
     }
 
-    public static Container russianContainer(String newCurrencySign) {
+    public static Container russianContainer(final String newCurrencySign) {
         return new Container(new RussianCurrencyValues() {
             @Override
             public String getCurrencySign() {
@@ -81,7 +81,7 @@ public final class Container {
         return getCzechContainer(czechValues, czechSmallCurrencyValues);
     }
 
-    public static Container czechContainer(String newCurrencySign) {
+    public static Container czechContainer(final String newCurrencySign) {
         CzechCurrencyValues czechValues = new CzechCurrencyValues() {
             @Override
             public String getCurrencySign() {
@@ -102,7 +102,7 @@ public final class Container {
         return new Container(new EnglishCurrencyValues());
     }
 
-    public static Container englishContainer(String newCurrencySign) {
+    public static Container englishContainer(final String newCurrencySign) {
         return new Container(new EnglishCurrencyValues() {
             @Override
             public String getCurrencySign() {
@@ -116,7 +116,7 @@ public final class Container {
         return getGermanContainer(values);
     }
 
-    public static Container germanContainer(String newCurrencySign) {
+    public static Container germanContainer(final String newCurrencySign) {
         GermanCurrencyValues values = new GermanCurrencyValues() {
             @Override
             public String getCurrencySign() {
@@ -131,7 +131,7 @@ public final class Container {
         return getBrazilianPortugueseContainer(values);
     }
 
-    public static Container brazilianPortugueseContainer(String overrideCurrencySign) {
+    public static Container brazilianPortugueseContainer(final String overrideCurrencySign) {
         BrazilianPortugueseCurrencyValues values = new BrazilianPortugueseCurrencyValues() {
             @Override
             public String getCurrencySign() {
@@ -145,7 +145,7 @@ public final class Container {
         return getVietnameseContainer(new VietnameseCurrencyValues());
     }
 
-    public static Container vietnameseContainer(String overrideCurrencySign) {
+    public static Container vietnameseContainer(final String overrideCurrencySign) {
         return getVietnameseContainer(new VietnameseCurrencyValues() {
             @Override
             public String getCurrencySign() {

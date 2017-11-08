@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Genius Doan on 07/11/2017.
  */
 public interface Joiner<Type> {
-    String joinValueChunksWithForms(Iterator<Type> chunks, Iterator<PluralForms> formsToUse);
+    String joinValueChunksWithForms(Iterator<Type> chunks, Iterator<? extends PluralForms> formsToUse);
 
     String joinParts(List<String> result);
 }

@@ -7,7 +7,7 @@ public interface CurrencyBaseValues extends CurrencySign {
 
     Map<Integer, GenderForms> baseNumbers();
 
-    List<PluralForms> pluralForms();
+    List<? extends PluralForms> pluralForms();
 
     char twoDigitsNumberSeparator();
 }

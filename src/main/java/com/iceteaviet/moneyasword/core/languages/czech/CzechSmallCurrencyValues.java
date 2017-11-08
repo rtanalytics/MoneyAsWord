@@ -3,7 +3,6 @@ package com.iceteaviet.moneyasword.core.languages.czech;
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.GenderForms;
 import com.iceteaviet.moneyasword.core.languages.GenderType;
-import com.iceteaviet.moneyasword.core.languages.PluralForms;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +23,7 @@ public class CzechSmallCurrencyValues implements CurrencyBaseValues {
     }
 
     @Override
-    public List<PluralForms> pluralForms() {
+    public List<CzechPluralForms> pluralForms() {
         return Arrays.asList(new CzechPluralForms());
     }
 

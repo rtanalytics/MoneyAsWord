@@ -20,16 +20,16 @@ public class IntegerToWordsConverter implements NumberToWordsConverter<Integer>,
 
     protected final GenderAwareIntegerToWordsMapper hundredsToWordsConverter;
     private final NumberChunking numberChunking = new NumberChunking();
-    private final List<PluralForms> pluralForms;
+    private final List<? extends PluralForms> pluralForms;
 
     public IntegerToWordsConverter(GenderAwareIntegerToWordsMapper hundredsToWordsConverter,
-                                   List<PluralForms> pluralForms) {
+                                   List<? extends PluralForms> pluralForms) {
         this.hundredsToWordsConverter = hundredsToWordsConverter;
         this.pluralForms = pluralForms;
     }
 
     public IntegerToWordsConverter(final NumberToWordsConverter<Integer> hundredsToWordsConverter,
-                                   List<PluralForms> pluralForms) {
+                                   List<? extends PluralForms> pluralForms) {
         this.hundredsToWordsConverter = ToStringConverter.toGenderAwareInteger(hundredsToWordsConverter);
         this.pluralForms = pluralForms;
     }
@@ -39,13 +39,13 @@ public class IntegerToWordsConverter implements NumberToWordsConverter<Integer>,
         checkArgument(value >= 0, "can't convert negative numbers for value %d", value);
 
         List<Integer> valueChunks = numberChunking.chunk(value);
-        List<PluralForms> formsToUse = reverse(pluralForms.subList(0, valueChunks.size()));
+        List<? extends PluralForms> formsToUse = reverse(pluralForms.subList(0, valueChunks.size()));
 
         return joinValueChunksWithForms(valueChunks.iterator(), formsToUse.iterator());
     }
 
     @Override
-    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<PluralForms> formsToUse) {
+    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<? extends PluralForms> formsToUse) {
         List<String> result = new ArrayList<>();
 
         while (chunks.hasNext() && formsToUse.hasNext()) {

@@ -2,7 +2,6 @@ package com.iceteaviet.moneyasword.core.languages.english;
 
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.GenderForms;
-import com.iceteaviet.moneyasword.core.languages.PluralForms;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +55,7 @@ public class EnglishCurrencyValues implements CurrencyBaseValues {
     }
 
     @Override
-    public List<PluralForms> pluralForms() {
+    public List<EnglishPluralForms> pluralForms() {
         return Arrays.asList(
                 new EnglishPluralForms(),
                 new EnglishPluralForms("thousand"),

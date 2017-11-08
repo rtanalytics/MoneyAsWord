@@ -3,7 +3,6 @@ package com.iceteaviet.moneyasword.core.languages.russian;
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.GenderForms;
 import com.iceteaviet.moneyasword.core.languages.GenderType;
-import com.iceteaviet.moneyasword.core.languages.PluralForms;
 import com.iceteaviet.moneyasword.core.languages.shared.SlavonicPluralForms;
 
 import java.util.Arrays;
@@ -59,7 +58,7 @@ public class RussianCurrencyValues implements CurrencyBaseValues {
     }
 
     @Override
-    public List<PluralForms> pluralForms() {
+    public List<SlavonicPluralForms> pluralForms() {
         return Arrays.asList(
                 new SlavonicPluralForms("", "", "", GenderType.MASCULINE),
                 new SlavonicPluralForms("тысяча", "тысячи", "тысяч", GenderType.FEMININE),

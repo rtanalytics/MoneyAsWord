@@ -12,12 +12,12 @@ import java.util.List;
 public class PortugueseIntegerToWordsJoiner extends IntegerToWordsConverter {
 
     public PortugueseIntegerToWordsJoiner(NumberToWordsConverter<Integer> hundredsToWordsConverter,
-                                          List<PluralForms> pluralForms) {
+                                          List<? extends PluralForms> pluralForms) {
         super(hundredsToWordsConverter, pluralForms);
     }
 
     @Override
-    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<PluralForms> formsToUse) {
+    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<? extends PluralForms> formsToUse) {
         List<String> result = new ArrayList<>();
 
         while (chunks.hasNext() && formsToUse.hasNext()) {

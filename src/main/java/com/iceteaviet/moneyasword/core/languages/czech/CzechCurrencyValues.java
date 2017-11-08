@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.GenderForms;
 import com.iceteaviet.moneyasword.core.languages.GenderType;
-import com.iceteaviet.moneyasword.core.languages.PluralForms;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +58,7 @@ public class CzechCurrencyValues implements CurrencyBaseValues {
     }
 
     @Override
-    public List<PluralForms> pluralForms() {
+    public List<CzechPluralForms> pluralForms() {
         return Arrays.asList(
                 new CzechPluralForms("tisíc", "tisíce", "tisíc", GenderType.MASCULINE),
                 new CzechPluralForms("milion", "miliony", "milionů", GenderType.MASCULINE),

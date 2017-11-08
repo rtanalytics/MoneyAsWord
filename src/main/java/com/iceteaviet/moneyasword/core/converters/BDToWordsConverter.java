@@ -21,7 +21,7 @@ public class BDToWordsConverter implements NumberToWordsConverter<BigDecimal>, J
     }
 
     @Override
-    public String joinValueChunksWithForms(Iterator<BigDecimal> chunks, Iterator<PluralForms> formsToUse) {
+    public String joinValueChunksWithForms(Iterator<BigDecimal> chunks, Iterator<? extends PluralForms> formsToUse) {
         return null;
     }
 
