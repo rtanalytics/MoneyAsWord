@@ -9,13 +9,13 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
-public class UnderThousandIntegerToWordsMapper implements GenderAwareIntegerToWordsMapper {
+public class UnderThousandToWordsMapper implements GenderAwareIntegerToWordsMapper {
     protected static final String FORMAT_PATTERN_THREE_DIGITS = "%s %s";
     protected static final String FORMAT_PATTERN_TWO_DIGITS = "%s%c%s";
     protected final Map<Integer, GenderForms> baseValues;
     protected final char twoDigitsNumberSeparator;
 
-    public UnderThousandIntegerToWordsMapper(Map<Integer, GenderForms> baseValues, char twoDigitsNumberSeparator) {
+    public UnderThousandToWordsMapper(Map<Integer, GenderForms> baseValues, char twoDigitsNumberSeparator) {
         this.baseValues = baseValues;
         this.twoDigitsNumberSeparator = twoDigitsNumberSeparator;
     }

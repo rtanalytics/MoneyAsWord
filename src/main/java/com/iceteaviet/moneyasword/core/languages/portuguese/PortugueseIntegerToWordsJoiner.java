@@ -11,9 +11,9 @@ import java.util.List;
 
 public class PortugueseIntegerToWordsJoiner extends IntegerToWordsConverter {
 
-    public PortugueseIntegerToWordsJoiner(NumberToWordsConverter<Integer> hundredsToWordsConverter,
+    public PortugueseIntegerToWordsJoiner(NumberToWordsConverter<Integer> underThousandToWordMapper,
                                           List<? extends PluralForms> pluralForms) {
-        super(hundredsToWordsConverter, pluralForms);
+        super(underThousandToWordMapper, pluralForms);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class PortugueseIntegerToWordsJoiner extends IntegerToWordsConverter {
             PluralForms currentForms = formsToUse.next();
 
             if (currentChunkValue > 0) {
-                result.add(hundredsToWordsConverter.asWords(currentChunkValue, GenderType.GENDERLESS));
+                result.add(underThousandToWordMapper.asWords(currentChunkValue, GenderType.GENDERLESS));
                 result.add(currentForms.formFor(currentChunkValue));
             }
         }

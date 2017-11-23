@@ -1,6 +1,6 @@
 package com.iceteaviet.moneyasword.core.languages.vietnamese;
 
-import com.iceteaviet.moneyasword.core.converters.UnderThousandIntegerToWordsMapper;
+import com.iceteaviet.moneyasword.core.converters.UnderThousandToWordsMapper;
 import com.iceteaviet.moneyasword.core.languages.GenderForms;
 import com.iceteaviet.moneyasword.core.languages.GenderType;
 
@@ -11,10 +11,10 @@ import static java.lang.String.format;
 /**
  * Created by Genius Doan on 07/11/2017.
  */
-public class VietnameseUnderThousandIntegerToWordsMapper extends UnderThousandIntegerToWordsMapper {
+public class VietnameseUnderThousandToWordsMapper extends UnderThousandToWordsMapper {
     protected static final String FORMAT_PATTERN_THREE_DIGITS = "%s%s%s";
 
-    public VietnameseUnderThousandIntegerToWordsMapper(Map<Integer, GenderForms> baseValues, char twoDigitsNumberSeparator) {
+    public VietnameseUnderThousandToWordsMapper(Map<Integer, GenderForms> baseValues, char twoDigitsNumberSeparator) {
         super(baseValues, twoDigitsNumberSeparator);
     }
 

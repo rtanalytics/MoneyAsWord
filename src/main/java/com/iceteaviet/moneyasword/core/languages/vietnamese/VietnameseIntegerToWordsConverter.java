@@ -13,9 +13,9 @@ import java.util.List;
  * Created by Genius Doan on 07/11/2017.
  */
 public class VietnameseIntegerToWordsConverter extends IntegerToWordsConverter {
-    public VietnameseIntegerToWordsConverter(GenderAwareIntegerToWordsMapper hundredsToWordsConverter,
+    public VietnameseIntegerToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
                                              List<? extends PluralForms> pluralForms) {
-        super(hundredsToWordsConverter, pluralForms);
+        super(underThousandToWordMapper, pluralForms);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class VietnameseIntegerToWordsConverter extends IntegerToWordsConverter {
                         result.add("không trăm");
                 }
 
-                result.add(hundredsToWordsConverter.asWords(currentChunkValue, GenderType.GENDERLESS));
+                result.add(underThousandToWordMapper.asWords(currentChunkValue, GenderType.GENDERLESS));
                 result.add(pluralFormString);
             }
         }

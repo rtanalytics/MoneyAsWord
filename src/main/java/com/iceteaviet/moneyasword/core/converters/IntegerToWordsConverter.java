@@ -18,19 +18,19 @@ import static com.google.common.collect.Lists.reverse;
 //Use Integer as base unit
 public class IntegerToWordsConverter implements NumberToWordsConverter<Integer>, Joiner<Integer> {
 
-    protected final GenderAwareIntegerToWordsMapper hundredsToWordsConverter;
+    protected final GenderAwareIntegerToWordsMapper underThousandToWordMapper;
     private final NumberChunking numberChunking = new NumberChunking();
     private final List<? extends PluralForms> pluralForms;
 
-    public IntegerToWordsConverter(GenderAwareIntegerToWordsMapper hundredsToWordsConverter,
+    public IntegerToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
                                    List<? extends PluralForms> pluralForms) {
-        this.hundredsToWordsConverter = hundredsToWordsConverter;
+        this.underThousandToWordMapper = underThousandToWordMapper;
         this.pluralForms = pluralForms;
     }
 
-    public IntegerToWordsConverter(final NumberToWordsConverter<Integer> hundredsToWordsConverter,
+    public IntegerToWordsConverter(final NumberToWordsConverter<Integer> underThousandToWordMapper,
                                    List<? extends PluralForms> pluralForms) {
-        this.hundredsToWordsConverter = ToStringConverter.toGenderAwareInteger(hundredsToWordsConverter);
+        this.underThousandToWordMapper = ToStringConverter.toGenderAwareInteger(underThousandToWordMapper);
         this.pluralForms = pluralForms;
     }
 
@@ -53,7 +53,7 @@ public class IntegerToWordsConverter implements NumberToWordsConverter<Integer>,
             PluralForms currentForms = formsToUse.next();
 
             if (currentChunkValue > 0) {
-                result.add(hundredsToWordsConverter.asWords(currentChunkValue, currentForms.genderType()));
+                result.add(underThousandToWordMapper.asWords(currentChunkValue, currentForms.genderType()));
                 result.add(currentForms.formFor(currentChunkValue));
             }
         }
@@ -64,7 +64,7 @@ public class IntegerToWordsConverter implements NumberToWordsConverter<Integer>,
     @Override
     public String joinParts(List<String> result) {
         if (result.size() == 0) {
-            return hundredsToWordsConverter.asWords(0, pluralForms.get(0).genderType());
+            return underThousandToWordMapper.asWords(0, pluralForms.get(0).genderType());
         }
 
         return com.google.common.base.Joiner.on(" ").join(result).trim();

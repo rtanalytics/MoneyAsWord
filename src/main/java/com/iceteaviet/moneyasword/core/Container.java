@@ -2,7 +2,7 @@ package com.iceteaviet.moneyasword.core;
 
 import com.iceteaviet.moneyasword.core.converters.BDBankingMoneyToWordsConverter;
 import com.iceteaviet.moneyasword.core.converters.IntegerToWordsConverter;
-import com.iceteaviet.moneyasword.core.converters.UnderThousandIntegerToWordsMapper;
+import com.iceteaviet.moneyasword.core.converters.UnderThousandToWordsMapper;
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.czech.CzechCurrencyValues;
 import com.iceteaviet.moneyasword.core.languages.czech.CzechIntegerToWordsConverter;
@@ -19,7 +19,7 @@ import com.iceteaviet.moneyasword.core.languages.portuguese.PortugueseThousandTo
 import com.iceteaviet.moneyasword.core.languages.russian.RussianCurrencyValues;
 import com.iceteaviet.moneyasword.core.languages.vietnamese.VietnameseCurrencyValues;
 import com.iceteaviet.moneyasword.core.languages.vietnamese.VietnameseIntegerToWordsConverter;
-import com.iceteaviet.moneyasword.core.languages.vietnamese.VietnameseUnderThousandIntegerToWordsMapper;
+import com.iceteaviet.moneyasword.core.languages.vietnamese.VietnameseUnderThousandToWordsMapper;
 import com.iceteaviet.moneyasword.core.support.NumberProcessor;
 
 import java.math.BigDecimal;
@@ -29,7 +29,7 @@ public final class Container {
     private final NumberToWordsConverter<BigDecimal> bigDecimalConverter;
 
     private Container(CurrencyBaseValues currencyBaseValues) {
-        UnderThousandIntegerToWordsMapper mapper = new UnderThousandIntegerToWordsMapper(currencyBaseValues.baseNumbers(),
+        UnderThousandToWordsMapper mapper = new UnderThousandToWordsMapper(currencyBaseValues.baseNumbers(),
                 currencyBaseValues.twoDigitsNumberSeparator());
 
         //Create and assign attribute core
@@ -156,9 +156,9 @@ public final class Container {
 
     //Helpers
     private static Container getVietnameseContainer(VietnameseCurrencyValues values) {
-        UnderThousandIntegerToWordsMapper hundredsToStringConverter = new VietnameseUnderThousandIntegerToWordsMapper(values.baseNumbers(),
+        UnderThousandToWordsMapper underThousandToWordMapper = new VietnameseUnderThousandToWordsMapper(values.baseNumbers(),
                 values.twoDigitsNumberSeparator());
-        VietnameseIntegerToWordsConverter converter = new VietnameseIntegerToWordsConverter(hundredsToStringConverter, values.pluralForms());
+        VietnameseIntegerToWordsConverter converter = new VietnameseIntegerToWordsConverter(underThousandToWordMapper, values.pluralForms());
         BDBankingMoneyToWordsConverter bigDecimalConverter = new BDBankingMoneyToWordsConverter(
                 converter,
                 values.getCurrencySign());
