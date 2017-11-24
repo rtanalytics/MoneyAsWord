@@ -10,22 +10,22 @@ import java.util.List;
 
 public class NumberProcessor {
 
-    private final NumberToWordsConverter<Integer> bigNumbersConverter;
+    private final NumberToWordsConverter<Long> bigNumbersConverter;
     private final GenderAwareIntegerToWordsMapper smallNumbersConverter;
 
-    public NumberProcessor(NumberToWordsConverter<Integer> bigNumbersConverter,
+    public NumberProcessor(NumberToWordsConverter<Long> bigNumbersConverter,
                            NumberToWordsConverter<Integer> smallNumbersConverter) {
         this.bigNumbersConverter = bigNumbersConverter;
         this.smallNumbersConverter = ToStringConverter.toGenderAwareInteger(smallNumbersConverter);
     }
 
-    public NumberProcessor(NumberToWordsConverter<Integer> bigNumbersConverter,
+    public NumberProcessor(NumberToWordsConverter<Long> bigNumbersConverter,
                            GenderAwareIntegerToWordsMapper smallNumbersConverter) {
         this.bigNumbersConverter = bigNumbersConverter;
         this.smallNumbersConverter = smallNumbersConverter;
     }
 
-    public String process(Integer bigNumber, Integer smallNumber) {
+    public String process(Long bigNumber, Integer smallNumber) {
         List<String> result = new ArrayList<>();
 
         if (bigNumber > 0) {

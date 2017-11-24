@@ -10,8 +10,8 @@ import static org.junit.Assert.assertEquals;
 public class NumberConverterTest {
     @Test
     public void englishInteger() {
-        IntegerConverterManager converter = IntegerConverterManager.getConverterManager(ConverterManager.ENGLISH);
-        String valueAsWords = converter.asWords(1_234);
+        LongConverterManager converter = LongConverterManager.getConverterManager(ConverterManager.ENGLISH);
+        String valueAsWords = converter.asWords(1234L);
 
         assertEquals("one thousand two hundred thirty-four", valueAsWords);
     }

@@ -1,7 +1,7 @@
 package com.iceteaviet.moneyasword.core.languages.vietnamese;
 
 import com.iceteaviet.moneyasword.core.GenderAwareIntegerToWordsMapper;
-import com.iceteaviet.moneyasword.core.converters.IntegerToWordsConverter;
+import com.iceteaviet.moneyasword.core.converters.LongToWordsConverter;
 import com.iceteaviet.moneyasword.core.languages.GenderType;
 import com.iceteaviet.moneyasword.core.languages.PluralForms;
 
@@ -12,9 +12,9 @@ import java.util.List;
 /**
  * Created by Genius Doan on 07/11/2017.
  */
-public class VietnameseIntegerToWordsConverter extends IntegerToWordsConverter {
-    public VietnameseIntegerToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
-                                             List<? extends PluralForms> pluralForms) {
+public class VietnameseLongToWordsConverter extends LongToWordsConverter {
+    public VietnameseLongToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
+                                          List<? extends PluralForms> pluralForms) {
         super(underThousandToWordMapper, pluralForms);
     }
 

@@ -2,30 +2,31 @@ package com.iceteaviet.moneyasword.core;
 
 import com.iceteaviet.moneyasword.core.converters.BDBankingMoneyToWordsConverter;
 import com.iceteaviet.moneyasword.core.converters.IntegerToWordsConverter;
+import com.iceteaviet.moneyasword.core.converters.LongToWordsConverter;
 import com.iceteaviet.moneyasword.core.converters.UnderThousandToWordsMapper;
 import com.iceteaviet.moneyasword.core.languages.CurrencyBaseValues;
 import com.iceteaviet.moneyasword.core.languages.czech.CzechCurrencyValues;
-import com.iceteaviet.moneyasword.core.languages.czech.CzechIntegerToWordsConverter;
+import com.iceteaviet.moneyasword.core.languages.czech.CzechLongToWordsConverter;
 import com.iceteaviet.moneyasword.core.languages.czech.CzechSmallCurrencyValues;
 import com.iceteaviet.moneyasword.core.languages.english.EnglishCurrencyValues;
 import com.iceteaviet.moneyasword.core.languages.german.GermanCurrencyValues;
-import com.iceteaviet.moneyasword.core.languages.german.GermanIntegerToWordsConverter;
+import com.iceteaviet.moneyasword.core.languages.german.GermanLongToWordsConverter;
 import com.iceteaviet.moneyasword.core.languages.german.GermanThousandToWordsMapper;
 import com.iceteaviet.moneyasword.core.languages.polish.PolishCurrencyValues;
 import com.iceteaviet.moneyasword.core.languages.portuguese.BrazilianPortugueseCurrencyValues;
-import com.iceteaviet.moneyasword.core.languages.portuguese.PortugueseIntegerToWordsConverter;
-import com.iceteaviet.moneyasword.core.languages.portuguese.PortugueseIntegerToWordsJoiner;
+import com.iceteaviet.moneyasword.core.languages.portuguese.PortugueseLongToWordsConverter;
+import com.iceteaviet.moneyasword.core.languages.portuguese.PortugueseLongToWordsJoiner;
 import com.iceteaviet.moneyasword.core.languages.portuguese.PortugueseThousandToWordsMapper;
 import com.iceteaviet.moneyasword.core.languages.russian.RussianCurrencyValues;
 import com.iceteaviet.moneyasword.core.languages.vietnamese.VietnameseCurrencyValues;
-import com.iceteaviet.moneyasword.core.languages.vietnamese.VietnameseIntegerToWordsConverter;
+import com.iceteaviet.moneyasword.core.languages.vietnamese.VietnameseLongToWordsConverter;
 import com.iceteaviet.moneyasword.core.languages.vietnamese.VietnameseUnderThousandToWordsMapper;
 import com.iceteaviet.moneyasword.core.support.NumberProcessor;
 
 import java.math.BigDecimal;
 
 public final class Container {
-    private final NumberToWordsConverter<Integer> integerConverter;
+    private final NumberToWordsConverter<Long> longConverter;
     private final NumberToWordsConverter<BigDecimal> bigDecimalConverter;
 
     private Container(CurrencyBaseValues currencyBaseValues) {
@@ -33,18 +34,18 @@ public final class Container {
                 currencyBaseValues.twoDigitsNumberSeparator());
 
         //Create and assign attribute core
-        integerConverter = new IntegerToWordsConverter(
+        longConverter = new LongToWordsConverter(
                 mapper,
                 currencyBaseValues.pluralForms());
         bigDecimalConverter = new BDBankingMoneyToWordsConverter(
-                integerConverter,
+                longConverter,
                 currencyBaseValues.getCurrencySign());
     }
 
-    private Container(NumberToWordsConverter<Integer> integerConverter,
+    private Container(NumberToWordsConverter<Long> longConverter,
                       NumberToWordsConverter<BigDecimal> bigDecimalConverter) {
         //Inject attribute from outside
-        this.integerConverter = integerConverter;
+        this.longConverter = longConverter;
         this.bigDecimalConverter = bigDecimalConverter;
     }
 
@@ -158,7 +159,7 @@ public final class Container {
     private static Container getVietnameseContainer(VietnameseCurrencyValues values) {
         UnderThousandToWordsMapper underThousandToWordMapper = new VietnameseUnderThousandToWordsMapper(values.baseNumbers(),
                 values.twoDigitsNumberSeparator());
-        VietnameseIntegerToWordsConverter converter = new VietnameseIntegerToWordsConverter(underThousandToWordMapper, values.pluralForms());
+        VietnameseLongToWordsConverter converter = new VietnameseLongToWordsConverter(underThousandToWordMapper, values.pluralForms());
         BDBankingMoneyToWordsConverter bigDecimalConverter = new BDBankingMoneyToWordsConverter(
                 converter,
                 values.getCurrencySign());
@@ -168,25 +169,40 @@ public final class Container {
 
     private static Container getCzechContainer(CzechCurrencyValues czechValues, CzechSmallCurrencyValues czechSmallValues) {
         Container containerForBigNumbers = new Container(czechValues);
-        Container containerForSmallNumbers = new Container(czechSmallValues);
 
-        NumberProcessor processor = new NumberProcessor(containerForBigNumbers.getIntegerConverter(), containerForSmallNumbers.getIntegerConverter());
-        CzechIntegerToWordsConverter integerConverter = new CzechIntegerToWordsConverter(processor, czechValues.exceptions());
+        UnderThousandToWordsMapper mapper = new UnderThousandToWordsMapper(czechSmallValues.baseNumbers(),
+                czechSmallValues.twoDigitsNumberSeparator());
+
+        NumberProcessor processor = new NumberProcessor(containerForBigNumbers.getLongConverter(), new IntegerToWordsConverter(mapper, czechSmallValues.pluralForms()));
+        CzechLongToWordsConverter czechConverter = new CzechLongToWordsConverter(processor, czechValues.exceptions());
         BDBankingMoneyToWordsConverter bigDecimalBankingMoneyValueConverter = new BDBankingMoneyToWordsConverter(
-                integerConverter,
+                czechConverter,
                 czechValues.getCurrencySign());
 
-        return new Container(integerConverter, bigDecimalBankingMoneyValueConverter);
+        return new Container(czechConverter, bigDecimalBankingMoneyValueConverter);
     }
 
     private static Container getGermanContainer(GermanCurrencyValues values) {
         GermanThousandToWordsMapper mapper = new GermanThousandToWordsMapper(
                 values.baseNumbers());
 
-        NumberProcessor processor = new NumberProcessor(new IntegerToWordsConverter(mapper, values.pluralForms()),
+        NumberProcessor processor = new NumberProcessor(new LongToWordsConverter(mapper, values.pluralForms()),
                 mapper);
 
-        GermanIntegerToWordsConverter converter = new GermanIntegerToWordsConverter(processor, values.exceptions());
+        GermanLongToWordsConverter germanConverter = new GermanLongToWordsConverter(processor, values.exceptions());
+
+        BDBankingMoneyToWordsConverter bigDecimalBankingMoneyValueConverter = new BDBankingMoneyToWordsConverter(
+                germanConverter, values.getCurrencySign());
+
+        return new Container(germanConverter, bigDecimalBankingMoneyValueConverter);
+    }
+
+    private static Container getBrazilianPortugueseContainer(BrazilianPortugueseCurrencyValues values) {
+        PortugueseThousandToWordsMapper thousandToWordsMapper = new PortugueseThousandToWordsMapper(
+                values.baseNumbers(), values.exceptions());
+
+        NumberProcessor processor = new NumberProcessor(new PortugueseLongToWordsJoiner(thousandToWordsMapper, values.pluralForms()), thousandToWordsMapper);
+        PortugueseLongToWordsConverter converter = new PortugueseLongToWordsConverter(processor, values.exceptions());
 
         BDBankingMoneyToWordsConverter bigDecimalBankingMoneyValueConverter = new BDBankingMoneyToWordsConverter(
                 converter, values.getCurrencySign());
@@ -194,21 +210,8 @@ public final class Container {
         return new Container(converter, bigDecimalBankingMoneyValueConverter);
     }
 
-    private static Container getBrazilianPortugueseContainer(BrazilianPortugueseCurrencyValues values) {
-        PortugueseThousandToWordsMapper thousandToWordsConverter = new PortugueseThousandToWordsMapper(
-                values.baseNumbers(), values.exceptions());
-
-        NumberProcessor processor = new NumberProcessor(new PortugueseIntegerToWordsJoiner(thousandToWordsConverter, values.pluralForms()), thousandToWordsConverter);
-        PortugueseIntegerToWordsConverter integerToWordsConverter = new PortugueseIntegerToWordsConverter(processor, values.exceptions());
-
-        BDBankingMoneyToWordsConverter bigDecimalBankingMoneyValueConverter = new BDBankingMoneyToWordsConverter(
-                integerToWordsConverter, values.getCurrencySign());
-
-        return new Container(integerToWordsConverter, bigDecimalBankingMoneyValueConverter);
-    }
-
-    public NumberToWordsConverter<Integer> getIntegerConverter() {
-        return integerConverter;
+    public NumberToWordsConverter<Long> getLongConverter() {
+        return longConverter;
     }
 
     public NumberToWordsConverter<BigDecimal> getBigDecimalConverter() {

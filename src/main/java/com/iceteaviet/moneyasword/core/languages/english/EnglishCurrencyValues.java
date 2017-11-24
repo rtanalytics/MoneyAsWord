@@ -60,7 +60,9 @@ public class EnglishCurrencyValues implements CurrencyBaseValues {
                 new EnglishPluralForms(),
                 new EnglishPluralForms("thousand"),
                 new EnglishPluralForms("million"),
-                new EnglishPluralForms("billion"));
+                new EnglishPluralForms("billion"),
+                new EnglishPluralForms("trillion"),
+                new EnglishPluralForms("quadrillion"));
     }
 
     @Override

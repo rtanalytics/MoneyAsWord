@@ -14,34 +14,41 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.collect.Lists.reverse;
 
-/**
- * Created by Genius Doan on 23/11/2017.
- */
 //Main converter for numbers
 //Use Long as base unit
-public class IntegerToWordsConverter implements NumberToWordsConverter<Integer>, Joiner<Integer> {
+public class LongToWordsConverter implements NumberToWordsConverter<Long>, Joiner<Integer> {
 
     protected final GenderAwareIntegerToWordsMapper underThousandToWordMapper;
     private final NumberChunking numberChunking = new NumberChunking();
-    private final List<? extends PluralForms> pluralForms;
+    private final List<PluralForms> pluralForms = new ArrayList<>();
 
-    public IntegerToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
+    public LongToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
                                 List<? extends PluralForms> pluralForms) {
         this.underThousandToWordMapper = underThousandToWordMapper;
-        this.pluralForms = pluralForms;
+        this.pluralForms.addAll(pluralForms);
     }
 
-    public IntegerToWordsConverter(final NumberToWordsConverter<Integer> underThousandToWordMapper,
+    public LongToWordsConverter(final NumberToWordsConverter<Integer> underThousandToWordMapper,
                                 List<? extends PluralForms> pluralForms) {
         this.underThousandToWordMapper = ToStringConverter.toGenderAwareInteger(underThousandToWordMapper);
-        this.pluralForms = pluralForms;
+        this.pluralForms.addAll(pluralForms);
     }
 
     @Override
-    public String asWords(Integer value) {
+    public String asWords(Long value) {
         checkArgument(value >= 0, "can't convert negative numbers for value %d", value);
 
         List<Integer> valueChunks = numberChunking.chunk(value);
+
+        while (valueChunks.size() > pluralForms.size()) {
+            int currSize = pluralForms.size();
+
+            //Double the array except the first element
+            for (int i = 1; i < currSize; i++) {
+                pluralForms.add(pluralForms.get(i));
+            }
+        }
+
         List<? extends PluralForms> formsToUse = reverse(pluralForms.subList(0, valueChunks.size()));
 
         return joinValueChunksWithForms(valueChunks.iterator(), formsToUse.iterator());

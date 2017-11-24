@@ -8,9 +8,19 @@ import java.util.Deque;
 import java.util.List;
 
 public class NumberChunking {
-
-    private static final Integer CHUNK_SIZE = 3;
+    private static final Integer CHUNK_SIZE = 3; //Support chunk to 1000
     private static final Integer SPLIT_FACTOR = IntMath.pow(10, CHUNK_SIZE);
+
+    public List<Integer> chunk(Long value) {
+        Deque<Integer> result = new ArrayDeque<>();
+
+        while (value > 0) {
+            result.addFirst((int) (value % SPLIT_FACTOR));
+            value /= SPLIT_FACTOR;
+        }
+
+        return new ArrayList<>(result);
+    }
 
     public List<Integer> chunk(Integer value) {
         Deque<Integer> result = new ArrayDeque<>();

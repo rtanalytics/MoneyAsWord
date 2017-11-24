@@ -1,7 +1,7 @@
 package com.iceteaviet.moneyasword.core.languages.portuguese;
 
 import com.iceteaviet.moneyasword.core.NumberToWordsConverter;
-import com.iceteaviet.moneyasword.core.converters.IntegerToWordsConverter;
+import com.iceteaviet.moneyasword.core.converters.LongToWordsConverter;
 import com.iceteaviet.moneyasword.core.languages.GenderType;
 import com.iceteaviet.moneyasword.core.languages.PluralForms;
 
@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class PortugueseIntegerToWordsJoiner extends IntegerToWordsConverter {
+public class PortugueseLongToWordsJoiner extends LongToWordsConverter {
 
-    public PortugueseIntegerToWordsJoiner(NumberToWordsConverter<Integer> underThousandToWordMapper,
-                                          List<? extends PluralForms> pluralForms) {
+    public PortugueseLongToWordsJoiner(NumberToWordsConverter<Integer> underThousandToWordMapper,
+                                       List<? extends PluralForms> pluralForms) {
         super(underThousandToWordMapper, pluralForms);
     }
 

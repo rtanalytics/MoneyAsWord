@@ -69,4 +69,46 @@ public class MoneyConverterTest {
         assertEquals("một nghìn hai trăm ba mươi bốn Đô-la Mỹ 56/100", converter.asWords(new BigDecimal("1234.56")));
         assertEquals("một tỷ một trăm hai mươi ba triệu bốn trăm năm mươi sáu nghìn bảy trăm Đô-la Mỹ", converter.asWords(new BigDecimal("1123456700")));
     }
+
+    @Test
+    public void brazilianBankingMoney() {
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.BRAZILIAN_PORTUGUESE);
+
+        assertEquals("mil duzentos e trinta e quatro R$ 56/100", converter.asWords(new BigDecimal("1234.56")));
+    }
+
+    @Test
+    public void germanBankingMoney() {
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.GERMAN);
+
+        assertEquals("eintausendzweihundertvierunddreißig € 56/100", converter.asWords(new BigDecimal("1234.56")));
+    }
+
+    @Test
+    public void russianBankingMoney() {
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.RUSSIAN);
+
+        assertEquals("одна тысяча двести тридцать четыре руб. 56/100", converter.asWords(new BigDecimal("1234.56")));
+    }
+
+    @Test
+    public void polishBankingMoney() {
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.POLISH);
+
+        assertEquals("jeden tysiąc dwieście trzydzieści cztery PLN 56/100", converter.asWords(new BigDecimal("1234.56")));
+    }
+
+    @Test
+    public void czechBankingMoney() {
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.CZECH);
+
+        assertEquals("jeden tisíc dvě stě třicet čtyři Kč 56/100", converter.asWords(new BigDecimal("1234.56")));
+    }
+
+    @Test(expected = Exception.class)
+    public void nullGiven() {
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.VIETNAMESE);
+
+        converter.asWords(null);
+    }
 }
