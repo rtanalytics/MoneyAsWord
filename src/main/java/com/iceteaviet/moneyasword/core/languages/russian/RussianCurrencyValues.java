@@ -13,6 +13,15 @@ import static com.iceteaviet.moneyasword.core.languages.GenderForms.genderForms;
 import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNumbersBuilder;
 
 public class RussianCurrencyValues implements CurrencyBaseValues {
+    private String currencySign = "руб.";
+
+    public RussianCurrencyValues() {
+
+    }
+
+    public RussianCurrencyValues(String currencySign) {
+        this.currencySign = currencySign;
+    }
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -68,7 +77,7 @@ public class RussianCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public String getCurrencySign() {
-        return "руб.";
+        return currencySign;
     }
 
     @Override

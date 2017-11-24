@@ -11,6 +11,15 @@ import java.util.Map;
 import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNumbersBuilder;
 
 public class PolishCurrencyValues implements CurrencyBaseValues {
+    private String currencySign = "PLN";
+
+    public PolishCurrencyValues() {
+
+    }
+
+    public PolishCurrencyValues(String currencySign) {
+        this.currencySign = currencySign;
+    }
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -66,7 +75,7 @@ public class PolishCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public String getCurrencySign() {
-        return "PLN";
+        return currencySign;
     }
 
     @Override

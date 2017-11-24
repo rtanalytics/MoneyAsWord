@@ -10,6 +10,15 @@ import java.util.Map;
 import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNumbersBuilder;
 
 public class EnglishCurrencyValues implements CurrencyBaseValues {
+    private String currencySign = "£";
+
+    public EnglishCurrencyValues() {
+
+    }
+
+    public EnglishCurrencyValues(String currencySign) {
+        this.currencySign = currencySign;
+    }
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -67,7 +76,7 @@ public class EnglishCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public String getCurrencySign() {
-        return "£";
+        return currencySign;
     }
 
     @Override

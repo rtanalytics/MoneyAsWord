@@ -11,8 +11,15 @@ import java.util.Map;
 import static com.iceteaviet.moneyasword.core.languages.GenderForms.genderForm;
 
 public class CzechSmallCurrencyValues implements CurrencyBaseValues {
+    private CzechCurrencyValues originalValues;
 
-    private final CzechCurrencyValues originalValues = new CzechCurrencyValues();
+    public CzechSmallCurrencyValues() {
+        originalValues = new CzechCurrencyValues();
+    }
+
+    public CzechSmallCurrencyValues(String currencySign) {
+        originalValues = new CzechCurrencyValues(currencySign);
+    }
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {

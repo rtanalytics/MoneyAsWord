@@ -14,6 +14,15 @@ import static com.iceteaviet.moneyasword.core.languages.GenderForms.genderForms;
 import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNumbersBuilder;
 
 public class GermanCurrencyValues implements CurrencyBaseValues {
+    private String currencySign = "€";
+
+    public GermanCurrencyValues() {
+
+    }
+
+    public GermanCurrencyValues(String currencySign) {
+        this.currencySign = currencySign;
+    }
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -71,7 +80,7 @@ public class GermanCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public String getCurrencySign() {
-        return "€";
+        return currencySign;
     }
 
     @Override

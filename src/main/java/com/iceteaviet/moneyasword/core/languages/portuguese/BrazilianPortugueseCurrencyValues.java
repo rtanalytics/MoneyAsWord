@@ -13,6 +13,15 @@ import java.util.Map;
 import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNumbersBuilder;
 
 public class BrazilianPortugueseCurrencyValues implements CurrencyBaseValues {
+    private String currencySign = "R$";
+
+    public BrazilianPortugueseCurrencyValues() {
+
+    }
+
+    public BrazilianPortugueseCurrencyValues(String currencySign) {
+        this.currencySign = currencySign;
+    }
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -76,6 +85,6 @@ public class BrazilianPortugueseCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public String getCurrencySign() {
-        return "R$";
+        return currencySign;
     }
 }

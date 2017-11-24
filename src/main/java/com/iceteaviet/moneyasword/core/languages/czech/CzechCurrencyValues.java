@@ -13,6 +13,15 @@ import static com.iceteaviet.moneyasword.core.languages.GenderForms.genderForms;
 import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNumbersBuilder;
 
 public class CzechCurrencyValues implements CurrencyBaseValues {
+    private String currencySign = "Kč";
+
+    public CzechCurrencyValues() {
+
+    }
+
+    public CzechCurrencyValues(String currencySign) {
+        this.currencySign = currencySign;
+    }
 
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
@@ -67,7 +76,7 @@ public class CzechCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public String getCurrencySign() {
-        return "Kč";
+        return currencySign;
     }
 
     @Override

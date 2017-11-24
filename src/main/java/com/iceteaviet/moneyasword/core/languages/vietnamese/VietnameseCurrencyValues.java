@@ -13,6 +13,16 @@ import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNum
  * Created by Genius Doan on 06/11/2017.
  */
 public class VietnameseCurrencyValues implements CurrencyBaseValues {
+    private String currencySign = "₫";
+
+    public VietnameseCurrencyValues() {
+
+    }
+
+    public VietnameseCurrencyValues(String currencySign) {
+        this.currencySign = currencySign;
+    }
+
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
         return baseNumbersBuilder()
@@ -83,7 +93,7 @@ public class VietnameseCurrencyValues implements CurrencyBaseValues {
 
     @Override
     public String getCurrencySign() {
-        return "₫";
+        return currencySign;
     }
 
     @Override

@@ -54,12 +54,7 @@ public final class Container {
     }
 
     public static Container polishContainer(final String newCurrencySign) {
-        return new Container(new PolishCurrencyValues() {
-            @Override
-            public String getCurrencySign() {
-                return newCurrencySign;
-            }
-        });
+        return new Container(new PolishCurrencyValues(newCurrencySign));
     }
 
     public static Container russianContainer() {
@@ -67,12 +62,7 @@ public final class Container {
     }
 
     public static Container russianContainer(final String newCurrencySign) {
-        return new Container(new RussianCurrencyValues() {
-            @Override
-            public String getCurrencySign() {
-                return newCurrencySign;
-            }
-        });
+        return new Container(new RussianCurrencyValues(newCurrencySign));
     }
 
     public static Container czechContainer() {
@@ -83,18 +73,8 @@ public final class Container {
     }
 
     public static Container czechContainer(final String newCurrencySign) {
-        CzechCurrencyValues czechValues = new CzechCurrencyValues() {
-            @Override
-            public String getCurrencySign() {
-                return newCurrencySign;
-            }
-        };
-        CzechSmallCurrencyValues czechSmallCurrencyValues = new CzechSmallCurrencyValues() {
-            @Override
-            public String getCurrencySign() {
-                return newCurrencySign;
-            }
-        };
+        CzechCurrencyValues czechValues = new CzechCurrencyValues(newCurrencySign);
+        CzechSmallCurrencyValues czechSmallCurrencyValues = new CzechSmallCurrencyValues(newCurrencySign);
 
         return getCzechContainer(czechValues, czechSmallCurrencyValues);
     }
@@ -104,12 +84,7 @@ public final class Container {
     }
 
     public static Container englishContainer(final String newCurrencySign) {
-        return new Container(new EnglishCurrencyValues() {
-            @Override
-            public String getCurrencySign() {
-                return newCurrencySign;
-            }
-        });
+        return new Container(new EnglishCurrencyValues(newCurrencySign));
     }
 
     public static Container germanContainer() {
@@ -118,12 +93,7 @@ public final class Container {
     }
 
     public static Container germanContainer(final String newCurrencySign) {
-        GermanCurrencyValues values = new GermanCurrencyValues() {
-            @Override
-            public String getCurrencySign() {
-                return newCurrencySign;
-            }
-        };
+        GermanCurrencyValues values = new GermanCurrencyValues(newCurrencySign);
         return getGermanContainer(values);
     }
 
@@ -133,12 +103,7 @@ public final class Container {
     }
 
     public static Container brazilianPortugueseContainer(final String overrideCurrencySign) {
-        BrazilianPortugueseCurrencyValues values = new BrazilianPortugueseCurrencyValues() {
-            @Override
-            public String getCurrencySign() {
-                return overrideCurrencySign;
-            }
-        };
+        BrazilianPortugueseCurrencyValues values = new BrazilianPortugueseCurrencyValues(overrideCurrencySign);
         return getBrazilianPortugueseContainer(values);
     }
 
@@ -146,13 +111,8 @@ public final class Container {
         return getVietnameseContainer(new VietnameseCurrencyValues());
     }
 
-    public static Container vietnameseContainer(final String overrideCurrencySign) {
-        return getVietnameseContainer(new VietnameseCurrencyValues() {
-            @Override
-            public String getCurrencySign() {
-                return overrideCurrencySign;
-            }
-        });
+    public static Container vietnameseContainer(String overrideCurrencySign) {
+        return getVietnameseContainer(new VietnameseCurrencyValues(overrideCurrencySign));
     }
 
     //Helpers
