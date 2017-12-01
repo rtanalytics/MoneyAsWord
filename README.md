@@ -1,4 +1,5 @@
 # MoneyAsWord
+[![Coverage Status](https://coveralls.io/repos/github/nhoxbypass/MoneyAsWord/badge.svg?branch=master)](https://coveralls.io/github/nhoxbypass/MoneyAsWord?branch=master) [![Build Status](https://travis-ci.org/nhoxbypass/MoneyAsWord.svg?branch=master)](https://travis-ci.org/nhoxbypass/MoneyAsWord)
 
 Simple library for convert number to words for currency cases.
 Eg: 10.500 VND —> "Mười ngàn năm trăm đồng" in Vietnamese or "Ten thousand and five hundred Vietnamese dong" in English.
