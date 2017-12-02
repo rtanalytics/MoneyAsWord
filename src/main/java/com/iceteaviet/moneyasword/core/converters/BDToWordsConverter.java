@@ -3,7 +3,6 @@ package com.iceteaviet.moneyasword.core.converters;
 import com.iceteaviet.moneyasword.core.Joiner;
 import com.iceteaviet.moneyasword.core.NumberToWordsConverter;
 import com.iceteaviet.moneyasword.core.languages.PluralForms;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.math.BigDecimal;
 import java.util.Iterator;
@@ -17,7 +16,7 @@ import java.util.List;
 public class BDToWordsConverter implements NumberToWordsConverter<BigDecimal>, Joiner<BigDecimal> {
     @Override
     public String asWords(BigDecimal value) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
