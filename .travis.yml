@@ -3,6 +3,6 @@ jdk:
   - oraclejdk8
 env:
   global:
-    - TERM=dumb
+    - COVERALLS_REPO_TOKEN=T8MDIU5WRUNERvMs9iXrFfhUnD5GrltMK
 after_success:
   - ./gradlew jacocoTestReport coveralls
