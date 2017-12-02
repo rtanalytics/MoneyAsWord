@@ -15,7 +15,6 @@ buildscript {
 
 jacoco {
     toolVersion = "0.7.9"
-    reportsDir = file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
 }
 
 coveralls {
