@@ -13,13 +13,19 @@ buildscript {
     }
 }
 
+jacoco {
+    toolVersion = "0.7.9"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
 // Generate code coverage reports ... run with jacoco
 jacocoTestReport {
     additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
     reports {
-        xml.enabled false
+        html.enabled = true // human readable
+        xml.enabled = true // required by coveralls
         csv.enabled false
-        html.destination "${buildDir}/reports/jacoco/html"
+        html.destination file("${buildDir}/jacocoHtml")
     }
     executionData = files('build/jacoco/test.exec')
 }
