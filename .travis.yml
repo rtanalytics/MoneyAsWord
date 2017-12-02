@@ -3,6 +3,6 @@ jdk:
   - oraclejdk8
 env:
   global:
-    - COVERALLS_REPO_TOKEN=T8MDIU5WRUNERvMs9iXrFfhUnD5GrltMK
+    - COVERALLS_REPO_TOKEN=szXh4DSgZ8JgN1Ilcc2JvOlCXA8HaqawF
 after_success:
   - ./gradlew jacocoTestReport coveralls
