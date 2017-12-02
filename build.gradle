@@ -15,7 +15,11 @@ buildscript {
 
 jacoco {
     toolVersion = "0.7.9"
-    reportsDir = file("$buildDir/customJacocoReportDir")
+    reportsDir = file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+}
+
+coveralls {
+    jacocoReportPath = "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
 }
 
 // Generate code coverage reports ... run with jacoco
