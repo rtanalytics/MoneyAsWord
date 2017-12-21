@@ -46,6 +46,8 @@ public class MoneyConverterTest {
         assertEquals("mười nghìn năm trăm ₫", converter.asWords(new BigDecimal("10500")));
         assertEquals("một trăm mười nghìn hai trăm ₫", converter.asWords(new BigDecimal("110200")));
         assertEquals("một tỷ một trăm hai mươi lăm triệu bốn trăm năm mươi mốt nghìn bảy trăm ₫", converter.asWords(new BigDecimal("1125451700")));
+        assertEquals("chín nghìn tỷ ₫", converter.asWords(new BigDecimal("9000000000000")));
+        assertEquals("chín nghìn tỷ ₫", converter.asWords(new BigDecimal("9000000000000")));
     }
 
     @Test
@@ -68,6 +70,8 @@ public class MoneyConverterTest {
         assertEquals("mười nghìn năm trăm Đô-la Mỹ", converter.asWords(new BigDecimal("10500")));
         assertEquals("một nghìn hai trăm ba mươi bốn Đô-la Mỹ 56/100", converter.asWords(new BigDecimal("1234.56")));
         assertEquals("một tỷ một trăm hai mươi ba triệu bốn trăm năm mươi sáu nghìn bảy trăm Đô-la Mỹ", converter.asWords(new BigDecimal("1123456700")));
+        assertEquals("Hai tỷ hai trăm hai mươi hai triệu hai trăm hai mươi hai ngàn hai trăm hai mươi hai Đô-la Mỹ", converter.asWords(new BigDecimal("2222222222")));
+        assertEquals("một nghìn không trăm lẻ một tỷ Đô-la Mỹ", converter.asWords(new BigDecimal("1000000000000")));
     }
 
     @Test
