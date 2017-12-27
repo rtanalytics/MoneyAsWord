@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by Genius Doan on 07/11/2017.
  */
+
 public class VietnameseLongToWordsConverter extends LongToWordsConverter {
     public VietnameseLongToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
                                           List<? extends PluralForms> pluralForms) {
@@ -26,6 +27,9 @@ public class VietnameseLongToWordsConverter extends LongToWordsConverter {
             Integer currentChunkValue = chunks.next();
             PluralForms currentForms = formsToUse.next();
 
+            //Add number if digit > 0.
+            // If we don't use this condition: it will be return redundant string like: 9.000.000.000 -> nine billion zero million zero thousand (should be only: nine billion)
+            // Or: 9.000.000.000.000 -> chín nghìn không tỉ không triệu không nghìn (should be: chín nghìn tỷ)
             if (currentChunkValue > 0) {
                 String pluralFormString = currentForms.formFor(currentChunkValue);
                 if (isHaveMiddleBufferWord(currentChunkValue, !result.isEmpty())) {

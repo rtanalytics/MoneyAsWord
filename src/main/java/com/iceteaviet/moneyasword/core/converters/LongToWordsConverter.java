@@ -40,6 +40,9 @@ public class LongToWordsConverter implements NumberToWordsConverter<Long>, Joine
 
         List<Integer> valueChunks = numberChunking.chunk(value);
 
+        //Add more plurals form with big numbers
+        //But not that it will cause unexpected error (9.000.000.000.000 will return "chín nghìn" instead of "chín nghìn tỉ"
+        ////So if the number is too big, add more detailed plurals-form rather than use this.
         while (valueChunks.size() > pluralForms.size()) {
             int currSize = pluralForms.size();
 

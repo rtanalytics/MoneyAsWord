@@ -12,6 +12,7 @@ import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNum
 /**
  * Created by Genius Doan on 06/11/2017.
  */
+
 public class VietnameseCurrencyValues implements CurrencyBaseValues {
     private String currencySign = "₫";
 
@@ -88,7 +89,9 @@ public class VietnameseCurrencyValues implements CurrencyBaseValues {
                 new VietnamesePluralForms(),
                 new VietnamesePluralForms("nghìn"),
                 new VietnamesePluralForms("triệu"),
-                new VietnamesePluralForms("tỷ"));
+                new VietnamesePluralForms("tỷ"),
+                new VietnamesePluralForms("nghìn tỷ"),
+                new VietnamesePluralForms("triệu tỷ"));
     }
 
     @Override
