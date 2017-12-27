@@ -16,20 +16,20 @@ import static com.google.common.collect.Lists.reverse;
 
 //Main converter for numbers
 //Use Long as base unit
-public class LongToWordsConverter implements NumberToWordsConverter<Long>, Joiner<Integer> {
+public class LongToWordsConverter<P extends PluralForms> implements NumberToWordsConverter<Long>, Joiner<Integer, P> {
 
     protected final GenderAwareIntegerToWordsMapper underThousandToWordMapper;
     private final NumberChunking numberChunking = new NumberChunking();
-    private final List<PluralForms> pluralForms = new ArrayList<>();
+    private final List<P> pluralForms = new ArrayList<>();
 
     public LongToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
-                                List<? extends PluralForms> pluralForms) {
+                                List<P> pluralForms) {
         this.underThousandToWordMapper = underThousandToWordMapper;
         this.pluralForms.addAll(pluralForms);
     }
 
     public LongToWordsConverter(final NumberToWordsConverter<Integer> underThousandToWordMapper,
-                                List<? extends PluralForms> pluralForms) {
+                                List<P> pluralForms) {
         this.underThousandToWordMapper = ToStringConverter.toGenderAwareInteger(underThousandToWordMapper);
         this.pluralForms.addAll(pluralForms);
     }
@@ -52,18 +52,18 @@ public class LongToWordsConverter implements NumberToWordsConverter<Long>, Joine
             }
         }
 
-        List<? extends PluralForms> formsToUse = reverse(pluralForms.subList(0, valueChunks.size()));
+        List<P> formsToUse = reverse(pluralForms.subList(0, valueChunks.size()));
 
         return joinValueChunksWithForms(valueChunks.iterator(), formsToUse.iterator());
     }
 
     @Override
-    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<? extends PluralForms> formsToUse) {
+    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<P> formsToUse) {
         List<String> result = new ArrayList<>();
 
         while (chunks.hasNext() && formsToUse.hasNext()) {
             Integer currentChunkValue = chunks.next();
-            PluralForms currentForms = formsToUse.next();
+            P currentForms = formsToUse.next();
 
             if (currentChunkValue > 0) {
                 result.add(underThousandToWordMapper.asWords(currentChunkValue, currentForms.genderType()));

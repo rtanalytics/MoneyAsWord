@@ -19,20 +19,20 @@ import static com.google.common.collect.Lists.reverse;
  */
 //Main converter for numbers
 //Use Long as base unit
-public class IntegerToWordsConverter implements NumberToWordsConverter<Integer>, Joiner<Integer> {
+public class IntegerToWordsConverter<P extends PluralForms> implements NumberToWordsConverter<Integer>, Joiner<Integer, P> {
 
     protected final GenderAwareIntegerToWordsMapper underThousandToWordMapper;
     private final NumberChunking numberChunking = new NumberChunking();
-    private final List<? extends PluralForms> pluralForms;
+    private final List<P> pluralForms;
 
     public IntegerToWordsConverter(GenderAwareIntegerToWordsMapper underThousandToWordMapper,
-                                List<? extends PluralForms> pluralForms) {
+                                   List<P> pluralForms) {
         this.underThousandToWordMapper = underThousandToWordMapper;
         this.pluralForms = pluralForms;
     }
 
     public IntegerToWordsConverter(final NumberToWordsConverter<Integer> underThousandToWordMapper,
-                                List<? extends PluralForms> pluralForms) {
+                                   List<P> pluralForms) {
         this.underThousandToWordMapper = ToStringConverter.toGenderAwareInteger(underThousandToWordMapper);
         this.pluralForms = pluralForms;
     }
@@ -42,13 +42,13 @@ public class IntegerToWordsConverter implements NumberToWordsConverter<Integer>,
         checkArgument(value >= 0, "can't convert negative numbers for value %d", value);
 
         List<Integer> valueChunks = numberChunking.chunk(value);
-        List<? extends PluralForms> formsToUse = reverse(pluralForms.subList(0, valueChunks.size()));
+        List<P> formsToUse = reverse(pluralForms.subList(0, valueChunks.size()));
 
         return joinValueChunksWithForms(valueChunks.iterator(), formsToUse.iterator());
     }
 
     @Override
-    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<? extends PluralForms> formsToUse) {
+    public String joinValueChunksWithForms(Iterator<Integer> chunks, Iterator<P> formsToUse) {
         List<String> result = new ArrayList<>();
 
         while (chunks.hasNext() && formsToUse.hasNext()) {

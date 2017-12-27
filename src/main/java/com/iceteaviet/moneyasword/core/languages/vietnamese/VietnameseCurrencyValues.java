@@ -87,11 +87,9 @@ public class VietnameseCurrencyValues implements CurrencyBaseValues {
     public List<VietnamesePluralForms> pluralForms() {
         return Arrays.asList(
                 new VietnamesePluralForms(),
-                new VietnamesePluralForms("nghìn"),
-                new VietnamesePluralForms("triệu"),
-                new VietnamesePluralForms("tỷ"),
-                new VietnamesePluralForms("nghìn tỷ"),
-                new VietnamesePluralForms("triệu tỷ"));
+                new VietnamesePluralForms("nghìn", false),
+                new VietnamesePluralForms("triệu", false),
+                new VietnamesePluralForms("tỷ", true));
     }
 
     @Override
