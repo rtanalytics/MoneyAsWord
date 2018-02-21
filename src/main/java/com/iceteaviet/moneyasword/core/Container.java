@@ -25,8 +25,19 @@ import com.iceteaviet.moneyasword.core.support.NumberProcessor;
 
 import java.math.BigDecimal;
 
+/**
+ * Contain language values and converter for converting number to text for specific language.
+ */
+
 public final class Container {
+    /**
+     * Use for convert long number to text
+     */
     private final NumberToWordsConverter<Long> longConverter;
+
+    /**
+     * Use for convert big decimal number to text
+     */
     private final NumberToWordsConverter<BigDecimal> bigDecimalConverter;
 
     private Container(CurrencyBaseValues currencyBaseValues) {
@@ -49,6 +60,9 @@ public final class Container {
         this.bigDecimalConverter = bigDecimalConverter;
     }
 
+    /**
+     * Quick create containers for some languages
+     */
     public static Container polishContainer() {
         return new Container(new PolishCurrencyValues());
     }
@@ -170,6 +184,9 @@ public final class Container {
         return new Container(converter, bigDecimalBankingMoneyValueConverter);
     }
 
+    /**
+     * Getters/setters
+     */
     public NumberToWordsConverter<Long> getLongConverter() {
         return longConverter;
     }

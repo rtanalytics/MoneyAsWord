@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
+/**
+ * Chunk number into parts base on split factor.
+ *
+ * Eg: given 97 132 465 will produce [97, 132, 465] with split factor 1000.
+ */
 public class NumberChunking {
     private static final Integer CHUNK_SIZE = 3; //Support chunk to 1000
     private static final Integer SPLIT_FACTOR = IntMath.pow(10, CHUNK_SIZE);

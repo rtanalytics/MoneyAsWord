@@ -4,9 +4,11 @@ import com.iceteaviet.moneyasword.core.converters.BDBankingMoneyToWordsConverter
 
 import java.math.BigDecimal;
 
-import static com.google.common.base.Verify.verifyNotNull;
+/**
+ * Manage functions to convert an amount of money to text
+ */
 
-public class MoneyConverterManager extends ConverterManager<BigDecimal> {
+public class MoneyConverterManager extends BaseConverterManager<BigDecimal> {
     private final BDBankingMoneyToWordsConverter converter;
 
     private MoneyConverterManager(BDBankingMoneyToWordsConverter converter) {
@@ -28,8 +30,6 @@ public class MoneyConverterManager extends ConverterManager<BigDecimal> {
     }
 
     public String asWords(BigDecimal value, boolean showCurrencySignFirst) {
-        verifyNotNull(value);
-
         return converter.asWords(value, showCurrencySignFirst);
     }
 }

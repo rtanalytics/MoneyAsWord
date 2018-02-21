@@ -4,8 +4,14 @@ import com.iceteaviet.moneyasword.core.Container;
 
 /**
  * Created by Genius Doan on 05/11/2017.
+ *
+ * Base class to provide basic skeleton to create a converter manager.
+ *
+ * Known subclass:
+ * @see LongConverterManager
+ * @see MoneyConverterManager
  */
-public abstract class ConverterManager<Type> {
+public abstract class BaseConverterManager<Type> {
     public static final int ENGLISH = 0;
     public static final int VIETNAMESE = 1;
     public static final int CZECH = 2;
@@ -18,6 +24,12 @@ public abstract class ConverterManager<Type> {
         return getContainerFromLanguageType(languageType, null);
     }
 
+    /**
+     * Get container base for given language type and currency sign
+     * @param languageType
+     * @param newCurrencySign
+     * @return a container which contain language values
+     */
     protected static Container getContainerFromLanguageType(int languageType, String newCurrencySign) {
         switch (languageType) {
             case ENGLISH:
@@ -46,5 +58,10 @@ public abstract class ConverterManager<Type> {
         }
     }
 
+    /**
+     * Base method for sub-class to implement. Use for converting number with generic type to text and return
+     * @param value
+     * @return text represent of the given value
+     */
     public abstract String asWords(Type value);
 }

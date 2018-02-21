@@ -8,6 +8,9 @@ import com.iceteaviet.moneyasword.core.languages.GenderType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Process number and return text.
+ */
 public class NumberProcessor {
 
     private final NumberToWordsConverter<Long> bigNumbersConverter;

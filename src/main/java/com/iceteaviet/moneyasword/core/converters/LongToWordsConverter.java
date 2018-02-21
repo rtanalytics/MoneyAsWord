@@ -14,8 +14,10 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.collect.Lists.reverse;
 
-//Main converter for numbers
-//Use Long as base unit
+/**
+ * Main converter for numbers
+ * Use Long as base unit
+ */
 public class LongToWordsConverter<P extends PluralForms> implements NumberToWordsConverter<Long>, Joiner<Integer, P> {
 
     protected final GenderAwareIntegerToWordsMapper underThousandToWordMapper;

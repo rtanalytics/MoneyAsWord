@@ -9,6 +9,9 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
+/**
+ * Convert under thousand numbers to text
+ */
 public class UnderThousandToWordsMapper implements GenderAwareIntegerToWordsMapper {
     protected static final String FORMAT_PATTERN_THREE_DIGITS = "%s %s";
     protected static final String FORMAT_PATTERN_TWO_DIGITS = "%s%c%s";

@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * Created by Genius Doan on 07/11/2017.
+ *
+ * Convert Vietnamese money to text
  */
 
 public class VietnameseLongToWordsConverter extends LongToWordsConverter<VietnamesePluralForms> {
@@ -47,6 +49,12 @@ public class VietnameseLongToWordsConverter extends LongToWordsConverter<Vietnam
         return joinParts(result);
     }
 
+    /**
+     * Vietnamese sometimes have the "buffer word" like: "lẻ", "linh" between two words.
+     * @param currentChunkValue
+     * @param notFirstDigit
+     * @return a boolean value show if it need to insert middle buffer word or not.
+     */
     private boolean isHaveMiddleBufferWord(Integer currentChunkValue, boolean notFirstDigit) {
         return currentChunkValue < 100 && notFirstDigit;
     }

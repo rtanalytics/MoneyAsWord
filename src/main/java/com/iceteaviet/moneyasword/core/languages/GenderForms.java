@@ -6,6 +6,11 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
+/**
+ * Gender forms of currency values
+ *
+ * Some languages in the word they use different words for each gender. Eg: actor/actress.
+ */
 public class GenderForms {
 
     private final Map<GenderType, String> forms;

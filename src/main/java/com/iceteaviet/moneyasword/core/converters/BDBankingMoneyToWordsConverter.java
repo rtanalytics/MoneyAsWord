@@ -6,13 +6,19 @@ import java.math.BigDecimal;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-//Main longConverter for banking money
-//Use BigDecimal as base unit to store value
+/**
+ * Main longConverter for banking money
+ * Use BigDecimal as base unit to store value
+ */
 public class BDBankingMoneyToWordsConverter implements NumberToWordsConverter<BigDecimal> {
-
+    /**
+     * the pattern to produce text from amount of money
+     */
     private static final String FORMAT_FULL = "%s %s %02d/100";
     private static final String FORMAT_NO_SUBUNIT = "%s %s";
+
     private static final int MAXIMAL_DECIMAL_PLACES_COUNT = 2;
+
     private final NumberToWordsConverter<Long> longConverter;
     private final String currencySymbol;
 
@@ -45,6 +51,10 @@ public class BDBankingMoneyToWordsConverter implements NumberToWordsConverter<Bi
         }
     }
 
+    /**
+     * Validate the input number
+     * @param value the input number
+     */
     private void validate(BigDecimal value) {
         checkArgument(value.scale() <= MAXIMAL_DECIMAL_PLACES_COUNT,
                 "can't transform more than %s decimal places for value %s", MAXIMAL_DECIMAL_PLACES_COUNT, value);

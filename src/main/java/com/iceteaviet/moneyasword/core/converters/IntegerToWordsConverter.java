@@ -16,9 +16,15 @@ import static com.google.common.collect.Lists.reverse;
 
 /**
  * Created by Genius Doan on 23/11/2017.
+ *
+ * Main converter for numbers
+ * Use Integer as base unit
+ *
+ * @deprecated since 21/02/2018. It's not safe to use Integer as it can cause number overflow when convert big numbers.
+ * @see LongToWordsConverter
  */
-//Main converter for numbers
-//Use Long as base unit
+
+@Deprecated
 public class IntegerToWordsConverter<P extends PluralForms> implements NumberToWordsConverter<Integer>, Joiner<Integer, P> {
 
     protected final GenderAwareIntegerToWordsMapper underThousandToWordMapper;

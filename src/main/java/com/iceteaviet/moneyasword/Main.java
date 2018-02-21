@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  */
 public class Main {
     public static void main(String[] args) {
-        MoneyConverterManager m = MoneyConverterManager.getConverterManager(ConverterManager.VIETNAMESE, "Vietnamese dong");
+        MoneyConverterManager m = MoneyConverterManager.getConverterManager(BaseConverterManager.VIETNAMESE, "Vietnamese dong");
         System.out.println(m.asWords(new BigDecimal("2222222222222222")));
     }
 }

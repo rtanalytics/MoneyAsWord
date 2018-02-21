@@ -10,6 +10,8 @@ import static java.lang.String.format;
 
 /**
  * Created by Genius Doan on 07/11/2017.
+ *
+ * Mapper between Vietnamese words and numbers
  */
 public class VietnameseUnderThousandToWordsMapper extends UnderThousandToWordsMapper {
     protected static final String FORMAT_PATTERN_THREE_DIGITS = "%s%s%s";

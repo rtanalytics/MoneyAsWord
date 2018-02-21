@@ -11,9 +11,14 @@ import static com.iceteaviet.moneyasword.core.support.BaseNumbersBuilder.baseNum
 
 /**
  * Created by Genius Doan on 06/11/2017.
+ *
+ * Contain currency values for Vietnamese language.
  */
 
 public class VietnameseCurrencyValues implements CurrencyBaseValues {
+    /**
+     * Default currency symbol
+     */
     private String currencySign = "₫";
 
     public VietnameseCurrencyValues() {
@@ -24,6 +29,13 @@ public class VietnameseCurrencyValues implements CurrencyBaseValues {
         this.currencySign = currencySign;
     }
 
+    /**
+     * Provide list of text representation of base numbers for the mapper.
+     * The converter first do look up in this list to generate text from number
+     * before do other complicated mechanisms...
+     *
+     * @return base numbers and text map
+     */
     @Override
     public Map<Integer, GenderForms> baseNumbers() {
         return baseNumbersBuilder()
@@ -83,6 +95,10 @@ public class VietnameseCurrencyValues implements CurrencyBaseValues {
                 .build();
     }
 
+    /**
+     * Provide plural forms
+     * @return a list contain all plural forms of Vietnamese languages.
+     */
     @Override
     public List<VietnamesePluralForms> pluralForms() {
         return Arrays.asList(
@@ -97,6 +113,10 @@ public class VietnameseCurrencyValues implements CurrencyBaseValues {
         return currencySign;
     }
 
+    /**
+     * @return separator between two words. In english sometimes it's use "-".
+     * Eg: "fourty-five" instead of "fourty five"
+     */
     @Override
     public char twoDigitsNumberSeparator() {
         return ' ';
