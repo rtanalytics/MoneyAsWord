@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class MoneyConverterTest {
     @Test
     public void englishBankingMoney() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.ENGLISH);
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.ENGLISH);
 
         assertEquals("one thousand two hundred thirty-four £ 56/100", converter.asWords(new BigDecimal("1234.56")));
         assertEquals("eleven thousand two hundred thirty-four £", converter.asWords(new BigDecimal("11234")));
@@ -21,7 +21,7 @@ public class MoneyConverterTest {
 
     @Test
     public void englishBankingMoneyShowCurrencySignFirst() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.ENGLISH);
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.ENGLISH);
 
         assertEquals("one thousand two hundred thirty-four £ 56/100", converter.asWords(new BigDecimal("1234.56"), false));
         assertEquals("£ eleven thousand two hundred thirty-four 56/100", converter.asWords(new BigDecimal("11234.56"), true));
@@ -30,7 +30,7 @@ public class MoneyConverterTest {
 
     @Test
     public void englishBankingMoneyOverrideCurrencySign() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.ENGLISH, "Vietnamese dong");
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.ENGLISH, "Vietnamese dong");
 
         assertEquals("ten thousand five hundred Vietnamese dong", converter.asWords(new BigDecimal("10500")));
         assertEquals("one hundred ten thousand two hundred Vietnamese dong", converter.asWords(new BigDecimal("110200")));
@@ -39,7 +39,7 @@ public class MoneyConverterTest {
 
     @Test
     public void vietnameseBankingMoney() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.VIETNAMESE);
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.VIETNAMESE);
 
         assertEquals("một trăm lẻ năm triệu không trăm lẻ bốn nghìn ₫", converter.asWords(new BigDecimal("105004000")));
         assertEquals("một tỷ không trăm năm mươi triệu không trăm bốn mươi nghìn ₫", converter.asWords(new BigDecimal("1050040000")));
@@ -52,7 +52,7 @@ public class MoneyConverterTest {
 
     @Test
     public void vietnameseBankingMoneyShowCurrencySignFirst() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.VIETNAMESE);
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.VIETNAMESE);
 
         assertEquals("một trăm lẻ năm triệu không trăm lẻ bốn nghìn ₫", converter.asWords(new BigDecimal("105004000"), false));
         assertEquals("₫ một tỷ không trăm năm mươi triệu không trăm bốn mươi nghìn", converter.asWords(new BigDecimal("1050040000"), true));
@@ -63,7 +63,7 @@ public class MoneyConverterTest {
 
     @Test
     public void vietnameseBankingMoneyOverrideCurrencySign() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.VIETNAMESE, "Đô-la Mỹ");
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.VIETNAMESE, "Đô-la Mỹ");
 
         assertEquals("một trăm lẻ năm triệu không trăm lẻ bốn nghìn Đô-la Mỹ", converter.asWords(new BigDecimal("105004000")));
         assertEquals("một tỷ không trăm năm mươi triệu không trăm bốn mươi nghìn Đô-la Mỹ", converter.asWords(new BigDecimal("1050040000")));
@@ -76,28 +76,28 @@ public class MoneyConverterTest {
 
     @Test
     public void brazilianBankingMoney() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.BRAZILIAN_PORTUGUESE);
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.BRAZILIAN_PORTUGUESE);
 
         assertEquals("mil duzentos e trinta e quatro R$ 56/100", converter.asWords(new BigDecimal("1234.56")));
     }
 
     @Test
     public void germanBankingMoney() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.GERMAN);
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.GERMAN);
 
         assertEquals("eintausendzweihundertvierunddreißig € 56/100", converter.asWords(new BigDecimal("1234.56")));
     }
 
     @Test
     public void russianBankingMoney() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.RUSSIAN);
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.RUSSIAN);
 
         assertEquals("одна тысяча двести тридцать четыре руб. 56/100", converter.asWords(new BigDecimal("1234.56")));
     }
 
     @Test
     public void polishBankingMoney() {
-        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(MoneyConverterManager.POLISH);
+        MoneyConverterManager converter = MoneyConverterManager.getConverterManager(BaseConverterManager.POLISH);
 
         assertEquals("jeden tysiąc dwieście trzydzieści cztery PLN 56/100", converter.asWords(new BigDecimal("1234.56")));
     }
