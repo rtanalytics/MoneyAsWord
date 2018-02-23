@@ -1,5 +1,5 @@
 # MoneyAsWord
-[![Coverage Status](https://coveralls.io/repos/github/nhoxbypass/MoneyAsWord/badge.svg?branch=master)](https://coveralls.io/github/nhoxbypass/MoneyAsWord?branch=master) [![Build Status](https://travis-ci.org/nhoxbypass/MoneyAsWord.svg?branch=master)](https://travis-ci.org/nhoxbypass/MoneyAsWord) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f57c5ba8c658464495f9c3069b191950)](https://www.codacy.com/app/nhoxbypass/MoneyAsWord?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nhoxbypass/MoneyAsWord&amp;utm_campaign=Badge_Grade)
+[![Coverage Status](https://coveralls.io/repos/github/rtanalytics/MoneyAsWord/badge.svg?branch=master)](https://coveralls.io/github/rtanalytics/MoneyAsWord?branch=master) [![Build Status](https://travis-ci.org/rtanalytics/MoneyAsWord.svg?branch=master)](https://travis-ci.org/rtanalytics/MoneyAsWord) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f57c5ba8c658464495f9c3069b191950)](https://www.codacy.com/app/nhoxbypass/MoneyAsWord?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rtanalytics/MoneyAsWord&amp;utm_campaign=Badge_Grade)
 
 Simple library for convert number to words for currency cases.
 Eg: 10.500 VND —> "Mười ngàn năm trăm đồng" in Vietnamese or "Ten thousand and five hundred Vietnamese dong" in English.
